@@ -1,0 +1,41 @@
+
+
+
+
+#header {
+    background-color:   #4D4DDB;
+    padding: 8px 10px;
+}
+
+#main-content {
+    background-color:  #D5D5D5;
+    padding: 15px 10px 10px 10px;
+    min-height: 340px;
+}
+
+.action-thumbnail {
+    text-align: center;
+}
+
+.main-nav-icon {
+    width: 110px;
+}
+
+.profile-box {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    padding: 10px 5px;
+}
+
+.profile-box ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px 0px 0px 30px;
+}
+
+
+.profile-icon {
+    height: 80px;
+}

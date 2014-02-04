@@ -7,43 +7,79 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="/css/introHCI.css" rel="stylesheet">
-	<!-- this is a comment in HTML -->
+	<link href="/css/studybuddy.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->        
+    <![endif]-->
 </head>
 
-<body>
-	<div class="container">
-		<!-- h1 through h6 are headers. The higher the number, the smaller the header -->
-		<!-- p means paragraph -->
-		<div class="jumbotron">
-			<h1>Michael BearBear</h1>
-			<p>human-computer interaction &middot; social computing &middot; crowdsourcing</p>
-		</div>
 
-		<ol>
-    		{{#each projects}}
-      			<li><a href="#{{id}}">{{name}}</a></li>
-    		{{/each}}
-    	</ol>
-		<h4>Projects</h4>
-		<!-- divs are invisible structuring elements that stack vertically by default. Use them to organize your code -->
-		<!-- img tags are images. Lorem Pixel will deliver random images; handy! -->
-		<!-- a are anchors, also known as hyperlinks. Use the href attribute to tell the browser where to go when the user clicks -->
-		{{#each projects}}
-			<div class="project" id="{{id}}">
-				<a href="project/{{name}}" class="thumbnail">
-					<img src="images/{{image}}" alt="Lorem Pixel image" class="img">
-					<p>{{name}}</p>
-				</a>
-			</div>
-		{{/each}}
+
+
+<body>
+
+
+    <div class="container" id="header">
+        <div class="row">
+            <div class="col-xs-12">
+                <span class="glyphicon glyphicon-home"></span>
+                &nbsp;&nbsp; StudyBuddy
+            </div>
+        </div>
+    </div>
+
+	<div class="container" id="main-content">
+        <div class="row">
+            <div class="col-xs-6 action-thumbnail">
+                <a href="/search" class="thumbnail">  
+                    <img src="/images/search-icon.png" alt="Search" class="main-nav-icon">
+                    Search
+                </a>
+            </div>            
+            <div class="col-xs-6 action-thumbnail">
+                <a href="/matches" class="thumbnail">  
+                    <img src="/images/friends-icon.jpg" alt="My Matches" class="main-nav-icon">
+                    My Matches
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="profile-box thumbnail">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <img class="profile-icon img-rounded" src="/images/profile-icon.png" alt="profile-pic">
+                            </div>
+                            <div class="col-xs-2">
+                                <ul>
+                                    <li>Name</li>
+                                    <li>Email</li>
+                                    <li>Phone</li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-8">
+                                <ul>
+                                    <li>Mr Pocket</li>
+                                    <li>pocket@stanford.edu</li>
+                                    <li>123-456-7891</li>
+                                </ul>
+                                 <a href="/update-profile">
+                                    <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span>&nbsp; Update Profile Info </button>
+                                </a>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
 	</div>
 
 	<script src="https://code.jquery.com/jquery.js"></script>
