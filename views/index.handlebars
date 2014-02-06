@@ -2,12 +2,13 @@
 
 <html>
 <head>
-	<title>HCI Project Portfolio</title>	
+	<title>StuddyBuddy</title>	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="/css/studybuddy.css" rel="stylesheet">
+    <link href="/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet" >
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,8 +27,8 @@
     <div class="container" id="header">
         <div class="row">
             <div class="col-xs-12">
-                <span class="glyphicon glyphicon-home"></span>
-                &nbsp;&nbsp; StudyBuddy
+                <i class="fa fa-home fa-lg main-nav-icon" alt="Search" href="/"></i>
+                &nbsp;&nbsp; StuddyBuddy
             </div>
         </div>
     </div>
@@ -36,13 +37,15 @@
         <div class="row">
             <div class="col-xs-6 action-thumbnail">
                 <a href="/search" class="thumbnail">  
-                    <img src="/images/search-icon.png" alt="Search" class="main-nav-icon">
+                    <i class="fa fa-search fa-8x main-nav-icon" alt="Search"></i>
+                    <br/>
                     Search
                 </a>
             </div>            
             <div class="col-xs-6 action-thumbnail">
                 <a href="/matches" class="thumbnail">  
-                    <img src="/images/friends-icon.jpg" alt="My Matches" class="main-nav-icon">
+                    <i class="fa fa-users fa-8x" alt="My Matches"></i>
+                    <br/>
                     My Matches
                 </a>
             </div>
@@ -54,23 +57,28 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-2">
-                                <img class="profile-icon img-rounded" src="/images/profile-icon.png" alt="profile-pic">
+                                <span class="fa-stack fa-4x">
+                                  <i class="fa fa-square fa-stack-2x"></i>
+                                  <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                                </span>
                             </div>
                             <div class="col-xs-2">
                                 <ul>
-                                    <li>Name</li>
-                                    <li>Email</li>
-                                    <li>Phone</li>
+                                    <li><i class="fa fa-user" alt="user-name"></i>&nbsp;&nbsp;Name</li>
+                                    <li><i class="fa fa-envelope" alt="user-email"></i>&nbsp;&nbsp;Email</li>
+                                    <li><i class="fa fa-phone" alt="user-phone"></i>&nbsp;&nbsp;Phone</li>
                                 </ul>
                             </div>
                             <div class="col-xs-8">
                                 <ul>
-                                    <li>Mr Pocket</li>
-                                    <li>pocket@stanford.edu</li>
-                                    <li>123-456-7891</li>
+                                    <li>Mr. Pocket</li>
+                                    <li><a href="mailto:pocket@stanford.edu">pocket@stanford.edu</a></li>
+                                    <li><a href="tel:1234567891">(123) 456-7891</a></li>
                                 </ul>
+                                <br/>
                                  <a href="/update-profile">
-                                    <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span>&nbsp; Update Profile Info </button>
+                                    <button type="button" class="btn btn-default btn-med"><span class="glyphicon glyphicon-plus"></span>
+                                    Update Profile Info </button>
                                 </a>
                             </div>
                         </div>

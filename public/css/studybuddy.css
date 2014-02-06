@@ -3,14 +3,21 @@
 
 
 #header {
-    background-color:   #4D4DDB;
+    background-color: #2a6496;
     padding: 8px 10px;
+    font-family: 'Helvetica Neue';
+    font-weight: lighter;
+    font-size: 18px;
+    color: whitesmoke;
 }
 
 #main-content {
-    background-color:  #D5D5D5;
+    background-color:  whitesmoke;
     padding: 15px 10px 10px 10px;
     min-height: 340px;
+    font-family: 'Helvetica Neue';
+    font-weight: lighter;
+    font-size: 16px;
 }
 
 .action-thumbnail {
@@ -26,7 +33,7 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
     background-color: whitesmoke;
-    padding: 10px 5px;
+    padding: 50px 5px;
 }
 
 .profile-box ul {
@@ -35,7 +42,15 @@
     padding: 0px 0px 0px 30px;
 }
 
-
-.profile-icon {
-    height: 80px;
+a {
+    text-decoration: none;
 }
+
+a:hover {
+    text-decoration: none;
+}
+
+
+/*.profile-icon {
+    height: 80px;
+}*/
