@@ -1,7 +1,3 @@
-
-
-
-
 #header {
     background-color: #2a6496;
     padding: 10px 10px;
@@ -11,6 +7,11 @@
     color: whitesmoke;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+}
+
+#home-icon {
+    padding-right: 10px;
 }
 
 #main-content {
@@ -50,4 +51,8 @@ a {
 
 a:hover {
     text-decoration: none;
+}
+
+a#home-link {
+    color: white;
 }
