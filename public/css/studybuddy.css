@@ -28,7 +28,8 @@
 }
 
 .main-nav-icon {
-    width: 110px;
+    /*width: 110px;*/
+    padding: 10px;
 }
 
 .profile-box {
@@ -37,6 +38,7 @@
     border-radius: 10px;
     background-color: whitesmoke;
     padding: 40px 5px;
+    float: center;
 }
 
 .profile-box ul {
@@ -55,4 +57,7 @@ a:hover {
 
 a#home-link {
     color: white;
+}
+
+.home-info {
 }
