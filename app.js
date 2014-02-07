@@ -11,9 +11,9 @@ var handlebars = require('express3-handlebars')
 var partials = require('express-partials')
 var index = require('./routes/index');
 var login = require('./routes/login');
-var matches = require('./routes/matches')
-// Example route
-// var user = require('./routes/user');
+var matches = require('./routes/matches');
+var profile = require('./routes/profile');
+var search = require('./routes/search');
 
 var app = express();
 
@@ -42,9 +42,10 @@ if ('development' == app.get('env')) {
 // Add routes here
 app.get('/', index.view);
 app.get('/login', login.view);
-app.get('/matches', matches.view)
-// Example route
-// app.get('/users', user.list);
+app.get('/matches', matches.view);
+app.get('/search', search.view);
+app.get('/update-profile', profile.view);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
