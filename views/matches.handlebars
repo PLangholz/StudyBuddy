@@ -4,9 +4,10 @@
 	    <title>Matches</title>  
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    
 	    <link href="/css/bootstrap.min.css" rel="stylesheet">
 	    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-	    <link href="/css/login.css" rel="stylesheet">
+	    
 	    <link href="/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet" >
 	    <link href="/css/header.css" rel="stylesheet">
 	    <link href="/css/matches.css" rel="stylesheet">
@@ -21,4 +22,49 @@
 
 	<body>
 	{{> header}}
-	
+
+	<div class="container">
+		<div class="matches pending">
+			<h2>Your Pending Matches....</h2>
+			<div class="match pending_match">
+				<p>CS 109 : Problem Set # 2</p>
+				<div class="match_info">
+					<p> You know:</p>
+					<ul>
+						<li>1</li>
+						<li>4</li>
+					</ul>
+					<p> You need help on:</p>
+					<ul>
+						<li>2</li>
+						<li>3</li>
+					</ul>
+					<div class="clickable">
+						<p>EDIT</p>
+					</div>
+				</div>
+			</div>
+			<h2>Recent Matches</h2>
+			<div class=" match recent_match">
+				<h3>Joe Bob</h3>
+				<p>CS 109 : Problem Set # 1</p>
+				<div class="match_info">
+					<p>Joe's Email: <a href="mailto:joe@joebob.com">joe@joebob.com</a></p>
+					<p>Joe's Phone Number<a href="tel:1234567891">(123) 456-7891</a></p>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script src="https://code.jquery.com/jquery.js"></script>
+
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/introHCI.js"></script>
+	<script src="/js/matches.js"></script>
+
+</body>
+
+
+

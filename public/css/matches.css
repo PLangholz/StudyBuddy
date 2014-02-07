@@ -1,0 +1,12 @@
+.container {
+	background-color: #888888;
+	color: rgba(0,0,0,.64);
+}
+
+p {
+	cursor: pointer;
+}
+
+.match_info {
+	display:none;
+}
