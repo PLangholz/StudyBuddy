@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>Matches</title>  
+        <title>Search</title>  
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
@@ -24,10 +24,56 @@
     {{> header}}
 
     <div class="container">
-        <h2> Search For Matches </h2><br />
-        <a href="/matches">See my existing matches</a><br />
-        <a href="/update-profile">Update my profile</a>
+        <!-- <h2> Search For Matches </h2><br /> -->
+        <div class="row">
+        <div class="col-xs-12">
+        <form class="navbar-form navbar" role="search" method="get" action="/search">
+          <div id="search-bar" class="form-group">
+            <input name="query" type="text" class="form-control" placeholder="Course">
+          </div>
+          <button id="search-button" type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i>&nbsp;Search</button>
+        </form>
+        </div>
     </div>
+
+    <div id="results">
+        {{#each matches}}
+        <div class="result row">
+            <div class="col-xs-12">
+            <div class="accordion" id="accordion{{id}}">
+            <div class="accordion-group">
+             <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{game.id}}" href="#collapse{{id}}"> 
+                    <h4 class="class-name">
+                        {{name}}
+                        <span class="arrow"><i style="float: right;" class="fa fa-chevron-down fa-xs"></i></span>
+                    </h4>
+                </a>
+                <div id="collapse{{id}}" class="accordion-body collapse">
+                        <div class="details-left col-md-12">
+                            {{#each assignments}}
+    
+                            <p><b>{{this}}</b> </p>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        {{/each}}
+
+    </div>
+
+
+
+       <!--  <a href="/matches">See my existing matches</a><br />
+        <a href="/update-profile">Update my profile</a> -->
+    </div>
+
+    
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
