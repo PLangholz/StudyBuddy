@@ -24,7 +24,7 @@
     {{> header}}
 
     <div class="container">
-        <!-- <h2> Search For Matches </h2><br /> -->
+        <h2> Search For Courses</h2><br/>
         <div class="row">
         <div class="col-xs-12">
         <form class="navbar-form navbar" role="search" method="get" action="/search">
@@ -35,8 +35,9 @@
         </form>
         </div>
     </div>
-
+    
     <div id="results">
+    {{#if matches.length}}
         {{#each matches}}
         <div class="result row">
             <div class="col-xs-12">
@@ -52,8 +53,7 @@
                 <div id="collapse{{id}}" class="accordion-body collapse">
                         <div class="details-left col-md-12">
                             {{#each assignments}}
-    
-                            <p><b>{{this}}</b> </p>
+                            <a href="/assignment/?id={{assignment_id}}"><p><b>{{name}}</b></p></a>
                             {{/each}}
                         </div>
                     </div>
@@ -64,8 +64,12 @@
             </div>
         </div>
         {{/each}}
+        {{else}}
+        <p>No classes found.</p>
+        
 
     </div>
+    {{/if}}
 
 
 

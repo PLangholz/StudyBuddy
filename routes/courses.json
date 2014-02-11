@@ -4,43 +4,85 @@
 			"id": 1,
 			"name": "CS 103: Mathematical Foundations of Computing",
 			"description": "Core Class",
-			"assignments": ["Assignment 1","Assignment 2","Assignment 3", "Practice Midterm Exam"]			
+			"assignments" :
+				[
+					{"assignment_id" : 1, "name" : "Assignment 1"}, 
+					{"assignment_id" : 2, "name" : "Assignment 2"}, 
+					{"assignment_id" : 3, "name" : "Assignment 3"}, 
+					{"assignment_id" : 4, "name" : "Practice Midterm Exam"}
+				]
 		},
 		{
 			"id": 2,
 			"name": "CS 105: Introduction to Computers",
 			"description": "Fuzzy Class",
-			"assignments": ["Assignment 1","Assignment 2","Assignment 3", "Practice Midterm Exam"]
+			"assignments" :
+				[
+					{"assignment_id" : 1, "name" : "Assignment 1"}, 
+					{"assignment_id" : 2, "name" : "Assignment 2"}, 
+					{"assignment_id" : 3, "name" : "Assignment 3"}, 
+					{"assignment_id" : 4, "name" : "Practice Midterm Exam"}
+				]
 		},
 		{
 			"id": 3,
 			"name": "CS 106A: Programming Methodology",
 			"description": "Intro Course",
-			"assignments": ["Assignment 1","Assignment 2","Assignment 3", "Practice Midterm Exam"]			
+			"assignments" :
+				[
+					{"assignment_id" : 1, "name" : "Assignment 1"}, 
+					{"assignment_id" : 2, "name" : "Assignment 2"}, 
+					{"assignment_id" : 3, "name" : "Assignment 3"}, 
+					{"assignment_id" : 4, "name" : "Practice Midterm Exam"}
+				]
 		},
 		{
 			"id": 4,
 			"name": "CS 106B: Programming Abstractions",
 			"description": "Intro Course Pt. 2",
-			"assignments": ["Assignment 1","Assignment 2","Assignment 3", "Practice Midterm Exam"]			
+			"assignments" :
+				[
+					{"assignment_id" : 1, "name" : "Assignment 1"}, 
+					{"assignment_id" : 2, "name" : "Assignment 2"}, 
+					{"assignment_id" : 3, "name" : "Assignment 3"}, 
+					{"assignment_id" : 4, "name" : "Practice Midterm Exam"}
+				]
 		},
 		{
 			"id": 5,
 			"name": "CS 107: Computer Organizations & Systems",
 			"description": "Difficult",
-			"assignments": ["Assignment 1","Assignment 2","Assignment 3", "Practice Midterm Exam"]
+			"assignments" :
+				[
+					{"assignment_id" : 1, "name" : "Assignment 1"}, 
+					{"assignment_id" : 2, "name" : "Assignment 2"}, 
+					{"assignment_id" : 3, "name" : "Assignment 3"}, 
+					{"assignment_id" : 4, "name" : "Practice Midterm Exam"}
+				]
 		},
 		{
 			"id": 6,
 			"name": "CS 108: Object-Oriented Systems Design",
 			"description": "Cool",
-			"assignments": ["Assignment 1","Assignment 2","Assignment 3", "Practice Midterm Exam"]
+			"assignments" :
+				[
+					{"assignment_id" : 1, "name" : "Assignment 1"}, 
+					{"assignment_id" : 2, "name" : "Assignment 2"}, 
+					{"assignment_id" : 3, "name" : "Assignment 3"}, 
+					{"assignment_id" : 4, "name" : "Practice Midterm Exam"}
+				]
 		},
 		{
 			"id": 7,
 			"name": "CS 109: Probability for Computer Scientists",
 			"description": "Mathy",
-			"assignments": ["Assignment 1","Assignment 2","Assignment 3", "Practice Midterm Exam"]
+			"assignments" :
+				[
+					{"assignment_id" : 1, "name" : "Assignment 1"}, 
+					{"assignment_id" : 2, "name" : "Assignment 2"}, 
+					{"assignment_id" : 3, "name" : "Assignment 3"}, 
+					{"assignment_id" : 4, "name" : "Practice Midterm Exam"}
+				]
 		}
 	]
 }

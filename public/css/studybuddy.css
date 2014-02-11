@@ -91,6 +91,34 @@ div.result {
     font-size: 10px;
 }
 
+div.result-problems {
+    border-bottom: 1px solid white;
+    background-color: #8C1515;
+    font-size: 12px;
+    color: white;
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+div.unselected {
+    background-color: #8C1515;
+}
+
+div.selected {
+    background-color: green;
+}
+
 div.result h4 {
     font-size: 14px;
 }
+
+h2 {
+    text-align: center;
+    font-weight: lighter;
+}
+
+#submit-problems-button {
+    width: 100%;
+}
+
+input[type=checkbox] {width:100px; height:100px;}

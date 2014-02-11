@@ -9,8 +9,8 @@ exports.view = function(req, res){
 	var matches = courseData;
 	if (query) {
 		matches = courseData.courses.filter(function(course){
-			console.log(course.name);
-			return course.name.indexOf(query) >=0;
+			var contString = course.name.split(' ').join('');
+			return contString.toLowerCase().indexOf(query.toLowerCase()) >= 0;
 		});
 		console.log(matches);
 	}
