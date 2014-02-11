@@ -15,6 +15,7 @@ var matches = require('./routes/matches');
 var profile = require('./routes/profile');
 var search = require('./routes/search');
 var assignment = require('./routes/assignment');
+var confirmation = require('./routes/confirmation');
 
 var app = express();
 
@@ -47,6 +48,7 @@ app.get('/matches', matches.view);
 app.get('/search', search.view);
 app.get('/update-profile', profile.view);
 app.get('/assignment', assignment.view);
+app.get('/confirmation', confirmation.view);
 
 
 http.createServer(app).listen(app.get('port'), function(){
