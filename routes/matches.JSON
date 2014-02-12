@@ -1,0 +1,25 @@
+{
+	"matches": [
+		{
+			"id" : 1,
+			"first_user_id": 1,
+			"second_user_id" : 2,
+			"first_user_request_id" : 1,
+			"second_user_request_id" : 2,
+			//these are for styling reasons to alert them of new matches
+			"seen_by_first_user" : "unseen",
+			"seen_by_second_user" : "unseen",
+
+		},
+		{
+			"id" : 2,
+			"first_user_id": 3,
+			"second_user_id" : 4,
+			"first_user_request_id" : 4,
+			"second_user_request_id" : 3,
+			//these are for styling reasons to alert them of new matches
+			"seen_by_first_user" : "unseen",
+			"seen_by_second_user" : "unseen",
+		}
+	]
+}
