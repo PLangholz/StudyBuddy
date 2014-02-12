@@ -62,13 +62,17 @@
                                     <li><!-- <i class="fa fa-user" alt="user-name"></i> &nbsp;&nbsp;-->Name</li>
                                     <li><!-- <i class="fa fa-envelope" alt="user-email"></i> -->&nbsp;&nbsp;Email</li>
                                     <li><!-- <i class="fa fa-phone fa-s" alt="user-phone"></i>&nbsp;&nbsp; -->Phone</li>
+                                    <li>
+                                    Description</li>
                                 </ul>
                             </div>
                             <div class="col-xs-8 home-info">
+                                
                                 <ul>
-                                    <li>Mr. Pocket</li>
-                                    <li><a href="mailto:pocket@stanford.edu">pocket@stanford.edu</a></li>
-                                    <li><a href="tel:1234567891">(123) 456-7891</a></li>
+                                    <li>{{curr_user.first_name}} {{curr_user.last_name}}</li>
+                                    <li><a href="mailto:pocket@stanford.edu">{{curr_user.email}}</a></li>
+                                    <li><a href="tel:1234567891">{{curr_user.phone_number}}</a></li>
+                                    <li><p class="description">{{curr_user.description}}</p></li>
                                 </ul>
                                 <br/>
                                  <a href="/update-profile">

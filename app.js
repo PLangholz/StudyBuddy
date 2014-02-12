@@ -50,6 +50,8 @@ app.get('/update-profile', profile.view);
 app.get('/assignment', assignment.view);
 app.get('/confirmation', confirmation.view);
 
+app.post('/', index.post);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
