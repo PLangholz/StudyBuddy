@@ -1,13 +1,4 @@
 
-#header .home_button {
-    float: left;
-}
-
-#header .title {
-    width:20%;
-    margin:auto;
-}
-
 #header {
     background-color: #2a6496;
     padding: 10px 10px;
@@ -19,6 +10,23 @@
     margin-right: auto;
     text-align: center;
 }
+
+#header .home_button {
+    float: left;
+}
+
+#header .title {
+    margin: auto;
+}
+
+#header .logout {
+    font-size: 12px;
+    display: inline;
+    float: right;
+    padding-right: 8px;
+    text-align: right;
+}
+
 
 #home-icon {
     padding-right: 10px;
@@ -32,6 +40,22 @@
     font-weight: lighter;
     font-size: 14px;
 }
+
+.status-message {
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.success-message {
+    background-color: #70C670;
+}
+.error-message {
+    background-color: #FF8566;
+}
+
+
+
 
 .action-thumbnail {
     text-align: center;
