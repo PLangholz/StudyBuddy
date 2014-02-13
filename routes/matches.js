@@ -115,7 +115,6 @@ exports.view = function(req, res){
 
 
 exports.update_request = function(req, res) {
-	console.log(req.body.assign_id);
 	var match_request = getMatchRequestFromId(req.body.assign_id);
 
 	match_request['problems_known'] = req.body.known;
