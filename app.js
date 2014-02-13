@@ -12,7 +12,7 @@ var partials = require('express-partials')
 var index = require('./routes/index');
 var login = require('./routes/login');
 var matches = require('./routes/matches');
-var profile = require('./routes/profile');
+var user = require('./routes/user');
 var search = require('./routes/search');
 var assignment = require('./routes/assignment');
 var confirmation = require('./routes/confirmation');
@@ -46,11 +46,14 @@ app.get('/', index.view);
 app.get('/login', login.view);
 app.get('/matches', matches.view);
 app.get('/search', search.view);
-app.get('/update-profile', profile.view);
 app.get('/assignment', assignment.view);
 app.get('/confirmation', confirmation.view);
 
-app.post('/', index.post);
+
+app.get('/new-profile', user.create_new_profile);
+app.get('/update-profile', user.render_update_profile);
+app.post('/post-login', user.login_or_signup);
+app.post('/post-update-profile', user.handle_update_profile);
 
 
 http.createServer(app).listen(app.get('port'), function(){
