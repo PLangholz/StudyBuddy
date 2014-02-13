@@ -29,15 +29,15 @@
 				{{#each all_user_unmatched}}
 				<div class="match pending_match">
 					<p>{{class.name}} : {{assignment.name}}</p>
-					<div class="match_info">
+					<div class="match_info" id="{{id}}">
 						<p> You know:</p>
-						<ul>
+						<ul class="known">
 							{{#each problems_known}}
 								<li>{{this}}</li>
 							{{/each}}
 						</ul>
 						<p> You need help on:</p>
-						<ul>
+						<ul class="unknown">
 							{{#each problems_unknown}}
 								<li>{{this}}</li>
 							{{/each}}
@@ -45,28 +45,25 @@
 						<div class="clickable edit">
 							<p>EDIT</p>
 						</div>
+						<div class="clickable delete">
+							<p>DELETE</p>
+						</div>
 					</div>
 				</div>
 				{{/each}}
 		</div>
 		<div class="matches recent">
 			<h2>Recent Matches</h2>
+			{{#each all_user_matches}}
 			<div class=" match recent_match">
-				<p><span>Joe Bob</span> CS 109 : Problem Set # 1</p>
+				<p><span>{{other_user.first_name}} {{other_user.last_name}}</span> {{class.name}} : {{assignment.name}}</p>
 				<div class="match_info">
-					<p>Joe's Email: <a href="mailto:joe@joebob.com">joe@joebob.com</a></p>
-					<p>Joe's Phone Number: <a href="tel:1234567891">(123) 456-7891</a></p>
+					<p>{{other_user.first_name}}'s Email: <a href="mailto:{{other_user.email}}">{{other_user.email}}</a></p>
+					<p>{{other_user.first_name}}'s Phone Number: <a href="tel:{{other_user.phone_number}}">{{other_user.phone_number}}</a></p>
 					
 				</div>
 			</div>
-			<div class=" match recent_match">
-				<p><span>Moritz Rudolph</span> CS 103 : Problem Set # 5</p>
-				<div class="match_info">
-					<p>Moritz's Email: <a href="mailto:joe@joebob.com">moritz@reindeer.com</a></p>
-					<p>Moritz's Phone Number: <a href="tel:1234567891">(911) 122-1231</a></p>
-					
-				</div>
-			</div>
+			{{/each}}
 		</div>
 
 		<!-- stub of a link -- for "navigation skeleton" purpose Maybe add to header? -->

@@ -1,4 +1,4 @@
-var users = require("./users.json");
+var users = require("../data.json");
 var matches = require("./matches.json");
 var match_request = require("./match_requests.json");
 var courses = require("./courses.json");
@@ -24,12 +24,30 @@ function getClassFromId(id) {
 
 }
 
+function getMatchRequestFromId(id) {
+	var match_list = match_request['match_requests'];
+	for (var i = 0; i < match_list.length; i ++ ) {
+		if (match_list[i].id == id)
+			return match_list[i];
+	}
+}
+
 function getAssignmentFromId(id) {
 	var assignment_list = assignments['assignments'];
 	for (var i = 0; i < assignment_list.length; i ++ ) {
 		if (assignment_list[i].id == id)
 			return assignment_list[i];
 	}
+}
+
+function hasBeenMatched(request_id) {
+	var match_list = matches['matches'];
+	for (var i = 0; i < match_list.length; i++) {
+		if (match_list[i].first_user_request_id == request_id ||
+				match_list[i].second_user_request_id == request_id)
+			return true;
+	}
+	return false;
 }
 
 exports.view = function(req, res){
@@ -50,6 +68,8 @@ exports.view = function(req, res){
   var all_user_matches = new Array();
   var all_user_unmatched = new Array();
   for (var j = 0; j < all_requests.length; j++){
+  	if (hasBeenMatched(all_requests[j].id))
+  		continue;
   	if (all_requests[j]['user_id'] == curr_user.id){
   		var unmatched_request = all_requests[j];
   		unmatched_request['class'] = 
@@ -74,17 +94,33 @@ exports.view = function(req, res){
   	if (other_user_id) {
 	  	var other_user = getUserFromId(match.second_user_id);
 	  	match['other_user'] = other_user;
-	  	all_user_matches.push(all_matches[k]);
+	  	var match_request_obj = getMatchRequestFromId(match.first_user_request_id);
+	  	match['class'] = getClassFromId(match_request_obj.course_id);
+	  	match['assignment'] = getAssignmentFromId(match_request_obj.assignment_id);
+	  	all_user_matches.push(match);
 	}
   }
 
-  var un_matched_matches = undefined
+  
 
   res.render('matches', 
   {
   	'title' : 'Matches',
   	'all_user_unmatched' : all_user_unmatched,
-  	
+  	'all_user_matches' : all_user_matches
+
   });
   
 };
+
+
+exports.update_request = function(req, res) {
+	console.log(req.body.assign_id);
+	var match_request = getMatchRequestFromId(req.body.assign_id);
+
+	match_request['problems_known'] = req.body.known;
+	match_request['problems_unknown'] = req.body.unknown;
+	res.json(match_request);
+
+}
+
