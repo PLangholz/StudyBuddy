@@ -3,6 +3,7 @@
 var user_data = require('../user_data');
 
 
+
 exports.login_or_signup = function(req, res) {
     var email = req.body.email;
     var curr_user = user_data.get_user_by_email(email);
@@ -38,7 +39,8 @@ exports.render_update_profile = function(req, res){
 
     res.render('profile', {
       		'title' : 'Update Profile',
-            'user': user
+            'user': user,
+            'username': user.first_name
   	});
 };
 
@@ -51,27 +53,20 @@ exports.create_new_profile = function(req, res) {
     });
 }
 
+
 /* POST - Handles posting of user data */
 exports.handle_update_profile = function(req, res) {
     var user = req.body.user;
     user.id = parseInt(user.id);
     user_data.update_user(user);
+    // Add a status message about what happened
+    var status_messages = [{"text": "Profile updated.", "class": "success-message", "glyphicon": "glyphicon-ok"}];
+    req.session.status_messages = status_messages;
+
     // redirect to home page
     res.redirect("/");
     return; 
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -16,13 +16,10 @@ exports.get_new_id = function() {
 };
 
 exports.get_user_by_email = function(email) {
-  console.log("hello I'm in the user module");
   var curr_user = undefined;
   for (var i = 0; i < data.users.length; i++) {
     if (data.users[i].email == email) {
       curr_user = data.users[i];
-      console.log("Found: ");
-      console.log(curr_user);
       break;
     }
   }
