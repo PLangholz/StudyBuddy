@@ -19,6 +19,7 @@ exports.login_or_signup = function(req, res) {
     } else {
         // This user exists. Send to homepage
         req.session.curr_user_id = curr_user.id;
+        req.session.username = curr_user.first_name;
         res.redirect("/");        
     } 
 }
@@ -40,7 +41,7 @@ exports.render_update_profile = function(req, res){
     res.render('profile', {
       		'title' : 'Update Profile',
             'user': user,
-            'username': user.first_name
+            'username': req.session.username
   	});
 };
 

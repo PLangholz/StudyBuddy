@@ -21,6 +21,7 @@ exports.view = function(req, res){
 /* logs out the user by clearing the session */
 exports.logout = function(req, res) {
     req.session.curr_user_id = undefined;
+    req.session.username = undefined;
     var status_messages = [{"text": "Logged out", "class": "success-message", "glyphicon": "glyphicon-ok"}];
     req.session.status_messages = status_messages;
     res.redirect("/login");

@@ -1,4 +1,3 @@
-var users = require("../data.json");
 
 var match_request = require("./match_requests.json");
 var courses = require("./courses.json");
@@ -54,15 +53,8 @@ exports.view = function(req, res){
   if (req.session.curr_user_id == undefined) {
   	res.redirect("/login");
   	return;
-  }	
-  var user_list = users['users'];
-  var curr_user = undefined;
-  for (var i = 0; i < user_list.length; i++) {
-  	if (user_list[i].id == req.session.curr_user_id) {
-  		curr_user = user_list[i];
-  		break;
-  	}
   }
+
   var all_requests = match_request['match_requests'];
   var all_matches = matches['matches'];
   var all_user_matches = new Array();
@@ -107,8 +99,8 @@ exports.view = function(req, res){
   {
   	'title' : 'Matches',
   	'all_user_unmatched' : all_user_unmatched,
-  	'all_user_matches' : all_user_matches
-
+  	'all_user_matches' : all_user_matches,
+    'username': req.session.username
   });
   
 };

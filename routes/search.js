@@ -1,9 +1,17 @@
 var courseData = require("../routes/courses.json");
+var user_data = require("../user_data.js");
+
 /*
  * GET match search page.
  */
 
 exports.view = function(req, res){
+    if (req.session.curr_user_id == undefined) {
+        res.redirect("/login");
+        return;
+    }
+    var curr_user = user_data.get_user_by_id(req.session.curr_user_id);
+
 	console.log(req.query.query);
 	var query = req.query.query;
 	var matches = courseData;
@@ -18,6 +26,7 @@ exports.view = function(req, res){
   res.render('search', 
   	{
   		'title' : 'Search',
-  		'matches' : matches
+  		'matches' : matches,
+        'username': req.session.username
   	});
 };

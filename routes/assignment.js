@@ -1,5 +1,6 @@
 var assignmentsData = require("../routes/assignments.json");
 var courses = require("./courses.json");
+var user_data = require("../user_data.js");
 
 /*
  * GET home page.
@@ -16,7 +17,13 @@ function getClassFromId(id) {
 
 }
 
-exports.view = function(req, res){
+exports.view = function(req, res) {
+    if (req.session.curr_user_id == undefined) {
+        res.redirect("/login");
+        return;
+    }
+    var curr_user = user_data.get_user_by_id(req.session.curr_user_id);
+
 	var assignment_id = req.query.id;
 	var assignment = [];
 	var assignmentName;
@@ -38,7 +45,8 @@ exports.view = function(req, res){
   		'title' : assignmentName,
   		'assignment' : assignment,
   		'course_name' : class_obj.name,
-  		'course_id' : class_obj.id
+  		'course_id' : class_obj.id,
+        'username': curr_user.first_name
   	});
 
 };
