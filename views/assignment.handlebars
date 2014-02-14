@@ -29,8 +29,10 @@
     
     <div id="results">
     {{#if assignment.length}}
+
         {{#each assignment}}
-    <form class="form-inline" role="form" method="get" action="/confirmation">
+        <h1 class="assignment_header class{{course_id}}" id="assign{{id}}">{{course_name}} : {{name}}</h2>
+    <!-- <form class="form-inline" role="form" method="get" action="/confirmation"> -->
         {{#each problems}}
         <div class="result-problems row unselected">
             <div class="col-xs-12">
@@ -49,7 +51,7 @@
         </div>
         <br/>
         <button id="submit-problems-button" type="submit" class="btn btn-default">Submit</button>
-    </form>
+    <!-- </form> -->
     </div>
         
         {{else}}
@@ -67,9 +69,36 @@
     <script src="https://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
 
     <script>
-        $('.result-problems').on("tap", function() {
-            $(this).toggleClass('selected');
-        })
+        $(document).ready(function() {
+            $("#submit-problems-button").click(function() {
+                
+                var problems_known = new Array();
+                var problems_unknown = new Array();
+                $(".row").each(function () {
+                    var problem = $(this).find(".problem-option").attr('id'); 
+                    if ($(this).hasClass("selected"))
+                        problems_known.push(problem);
+                    else 
+                        problems_unknown.push(problem);
+                });
+                var assign_id = $('.assignment_header').attr('id').substr('assign'.length);
+                console.log(problems_known);
+                $.post('/post-create-match-request', {
+                    'assign_id' : assign_id,
+                    'known' : problems_known,
+                    'unknown' : problems_unknown
+                },redirectToMatches);
+                
+            });
+            
+            function redirectToMatches(response) {
+                window.location.replace('/matches');
+            };
+
+            $('.result-problems').on("tap", function() {
+                $(this).toggleClass('selected');
+            });
+        });
 
 
     </script>

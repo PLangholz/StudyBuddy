@@ -113,10 +113,35 @@ exports.view = function(req, res){
   
 };
 
+function get_new_match_request_id() {
+	var new_match_id = match_request.match_requests.length;
+	return new_match_id;
+}
+
+exports.create_match_request = function(req, res) {
+	var known = req.body.known;
+	var unknown = req.body.unknown;
+	var user_id = req.session.curr_user_id;
+	var assign_id = req.body.assign_id;
+	var assign_obj = getAssignmentFromId(assign_id);
+	var new_match_request_id = get_new_match_request_id();
+
+	var new_match = 
+	{
+		'id' : new_match_request_id,
+		'user_id' : user_id,
+		'assignment_id' : assign_id,
+		'course_id' : assign_obj.course_id,
+		'problems_known' : known,
+		'problems_unknown' : unknown
+	}
+
+	match_request['match_requests'].push(new_match);
+	res.send(200);
+}
 
 exports.update_request = function(req, res) {
 	var match_request = getMatchRequestFromId(req.body.assign_id);
-
 	match_request['problems_known'] = req.body.known;
 	match_request['problems_unknown'] = req.body.unknown;
 	res.json(match_request);

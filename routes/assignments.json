@@ -1,7 +1,7 @@
 {
 	"assignments": [
 		{
-			"id": 1,
+			"id": 0,
 			"course_id" : 7,
 			"course_name" : "CS 109: Probability for Computer Scientists", 
 			"name" : "Assignment 1",
@@ -9,10 +9,10 @@
 			"problems": [1,2,3,4,5,6]			
 		},
 		{
-			"id": 4,
+			"id": 1,
 			"course_id" : 1,
 			"course_name" : "CS 103: Mathematical Foundations of Computing",
-			"name": "Practice Midterm",
+			"name": "Assignment 1",
 			"description" : "Practice midterm examination",
 			"problems": [1, 2, 3, 4, 5, 6]
 		}
