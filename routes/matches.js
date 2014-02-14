@@ -2,7 +2,7 @@
 var match_request = require("./match_requests.json");
 var courses = require("./courses.json");
 var assignments = require("./assignments.json");
-
+var user_data = require("../user_data.js");
 var matches = require("../matches.json");
 
 function getUserFromId(id) {
@@ -54,6 +54,7 @@ exports.view = function(req, res){
   	res.redirect("/login");
   	return;
   }
+  var curr_user = user_data.get_user_by_id(req.session.curr_user_id);
 
   var all_requests = match_request['match_requests'];
   var all_matches = matches['matches'];
