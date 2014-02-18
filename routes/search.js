@@ -12,7 +12,6 @@ exports.view = function(req, res){
     }
     var curr_user = user_data.get_user_by_id(req.session.curr_user_id);
 
-	console.log(req.query.query);
 	var query = req.query.query;
 	var matches = courseData;
 	if (query) {
@@ -20,13 +19,23 @@ exports.view = function(req, res){
 			var contString = course.name.split(' ').join('');
 			return contString.toLowerCase().indexOf(query.toLowerCase()) >= 0;
 		});
-		console.log(matches);
 	}
-	
+	else {
+			matches = courseData.courses.filter(function(course) {
+			return course.popular == "true";
+		});
+	}
+	console.log(matches.length);
+	for (var i = 0; i < matches.length; i++) {
+		console.log("changing "+matches[i].name);
+		matches[i].name = matches[i].name.substring(0, 35);
+	}
+	console.log(matches);
   res.render('search', 
   	{
+  		'query' : query,
   		'title' : 'Search',
   		'matches' : matches,
-        'username': req.session.username
+      'username': req.session.username
   	});
 };

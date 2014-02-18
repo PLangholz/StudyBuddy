@@ -8,6 +8,7 @@
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="/css/studybuddy.css" rel="stylesheet">
+    <link href="/css/header.css" rel="stylesheet">
     <link href="/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet" >
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,56 +36,49 @@
                 <a href="/search" class="thumbnail">  
                     <i class="fa fa-search fa-7x main-nav-icon" alt="Search"></i>
                     <br/>
-                    Search
+                    <div class="description">Search</div>
                 </a>
             </div>            
             <div class="col-xs-6 action-thumbnail">
-                <a href="/matches" class="thumbnail">  
+                <a href="/matches" class="thumbnail"> 
                     <i class="fa fa-users fa-7x main-nav-icon" alt="My Matches"></i>
-                    <br/>
-                    My Matches
+                    <br/><div class="description">
+                    My Matches</div>
                 </a>
             </div>
         </div>
 
         <div class="row">
             <div class="col-xs-12">
-                <div class="profile-box thumbnail">
+                <div class="profile-box">
                     <div class="container">
                         <div class="profile-box">
                         <div class="row">
-                            <div class="col-xs-2">
+                            <div id="prof-photo" class="col-xs-4">
                                 <span class="fa-stack fa-3x home-profile-photo">
                                   <i class="fa fa-square fa-stack-2x"></i>
                                   <i class="fa fa-user fa-stack-1x fa-inverse"></i>
                                 </span>
                             </div>
                             
-                            <div class="col-xs-1 home-info">
-                                <ul>
-                                    <li><!-- <i class="fa fa-user" alt="user-name"></i> &nbsp;&nbsp;-->Name</li>
-                                    <li><!-- <i class="fa fa-envelope" alt="user-email"></i> -->&nbsp;&nbsp;Email</li>
-                                    <li><!-- <i class="fa fa-phone fa-s" alt="user-phone"></i>&nbsp;&nbsp; -->Phone</li>
-                                    <li>
-                                    Description</li>
-                                </ul>
-                            </div>
-                            <div class="col-xs-8 home-info">
-                                
-                                <ul>
-                                    <li>{{curr_user.first_name}} {{curr_user.last_name}}</li>
-                                    <li><a href="mailto:pocket@stanford.edu">{{curr_user.email}}</a></li>
-                                    <li><a href="tel:1234567891">{{curr_user.phone_number}}</a></li>
-                                    <li><p class="description">{{curr_user.description}}</p></li>
-                                </ul>
+                            <div class="col-xs-6 home-info">
+                                <table id="home-prof-info">
+                                <tr><td><i class="fa fa-user fa-med nav-icon" alt="Name"></i></td><td>{{curr_user.first_name}} {{curr_user.last_name}}</td></tr>
+                                <tr><td><i class="fa fa-envelope fa-med nav-icon" alt="Email"></i></td><td><a href="mailto:pocket@stanford.edu">{{curr_user.email}}</a></td></tr>
+                                <tr><td><i class="fa fa-phone fa-med nav-icon" alt="Phone"></i></td><td><a href="tel:1234567891">{{curr_user.phone_number}}</a></td></tr>
+                                <tr><td><i class="fa fa-info fa-med nav-icon" alt="Headline"></i></td><td>{{curr_user.description}}</td></tr>
+                                </table>
                                 <br/>
-                                 <a href="/update-profile">
-                                    <button type="button" class="btn btn-default btn-med"><span class="glyphicon glyphicon-plus"></span>
-                                    Update Profile Info </button>
-                                </a>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                            <a href="/update-profile">
+                                    <button id="update-prof" type="button" class="btn btn-med"><i class="fa fa-pencil fa-med nav-icon" alt="Update Profile"></i>Edit </button>
+                                </a>
                         </div>
+                        </div>
+                    </div>
                         
                     </div>
 

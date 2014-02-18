@@ -4,6 +4,7 @@
 			"id": 0,
 			"name": "CS 103: Mathematical Foundations of Computing",
 			"description": "Core Class",
+			"popular": "true",
 			"assignments" :
 				[
 					{"assignment_id" : 0, "name" : "Assignment 1"}, 
@@ -16,6 +17,7 @@
 			"id": 1,
 			"name": "CS 106A: Programming Methodology",
 			"description": "Intro Course",
+			"popular": "false",
 			"assignments" :
 				[
 					{"assignment_id" : 4, "name" : "Assignment 1"}, 
@@ -28,6 +30,7 @@
 			"id": 2,
 			"name": "CS 106B: Programming Abstractions",
 			"description": "Intro Course Pt. 2",
+			"popular": "false",
 			"assignments" :
 				[
 					{"assignment_id" : 8, "name" : "Assignment 1"}, 
@@ -40,6 +43,7 @@
 			"id": 3,
 			"name": "CS 107: Computer Organizations & Systems",
 			"description": "Difficult",
+			"popular": "false",
 			"assignments" :
 				[
 					{"assignment_id" : 12, "name" : "Assignment 1"}, 
@@ -52,6 +56,7 @@
 			"id": 4,
 			"name": "CS 109: Probability for Computer Scientists",
 			"description": "Mathy",
+			"popular": "true",
 			"assignments" :
 				[
 					{"assignment_id" : 16, "name" : "Assignment 1"}, 

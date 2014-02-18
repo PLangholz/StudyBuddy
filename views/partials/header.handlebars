@@ -1,20 +1,28 @@
 
 <div class="container" id="header">
     <div class="row">
-        <div class="col-xs-2">
-            <div class="home_button">
-                <a id="home-link" href="/"><i id="home-icon" class="fa fa-home fa-lg" style="vertical-align: middle;" alt="Search" href="/"></i></a>
+        <div class="col-xs-4">
+            {{#if username}}
+            <div class="icon">
+                <a class="nav-link" href="/"><i class="fa fa-home fa-med nav-icon" alt="Home"></i></a>
             </div>
+            <div class="icon">
+                <a class="nav-link" href="/search"><i class="fa fa-search fa-med nav-icon" alt="Search"></i></a>
+            </div>
+            <div class="icon">
+                <a class="nav-link" href="/matches"><i class="fa fa-users fa-med nav-icon" alt="Matches"></i></a>
+            </div>
+            {{/if}}
         </div>
-        <div class="col-xs-8">
+        <div class="col-xs-4">
             <div class="title">
-            	<span id="header-name">{{title}}</span>		
+            	<span id="header-name">StuddyBuddy</span>
             </div>
         </div>
-        <div class="col-xs-2">
+        <div class="col-xs-4">
             {{#if username}}
                 <div class="logout">
-                    Hi {{username}} <a href="/logout" >Logout</a>
+                    <!-- {{username}} -->&nbsp;&nbsp;<a class="nav-link" href="/logout"><i class="fa fa-sign-out fa-lg nav-icon" alt="Logout"></i></a>
                 </div>
             {{/if}}
         </div>

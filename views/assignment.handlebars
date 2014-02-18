@@ -24,20 +24,20 @@
     {{> header}}
 
     <div class="container">
-        <h2>Select Completed Problems</h2>
+        <h2 class="problems-header">Select Completed Problems</h2>
         <br/>
     
     <div id="results">
     {{#if assignment.length}}
 
         {{#each assignment}}
-        <h1 class="assignment_header class{{course_id}}" id="assign{{id}}">{{course_name}} : {{name}}</h2>
+        <h4 class="assignment_header class{{course_id}}" id="assign{{id}}">{{course_name}}</h4><h4 class="assignment-name">{{name}}</h4>
     <!-- <form class="form-inline" role="form" method="get" action="/confirmation"> -->
         {{#each problems}}
         <div class="result-problems row unselected">
             <div class="col-xs-12">
                 <div id="{{this}}" class="problem-option">
-                    <h2>Problem {{this}}</h2>
+                    <h2 class="problem-name">Problem {{this}}</h2>
                     <!-- <label>
                         <input type="checkbox">Problem {{this}}</input>
                     </label> -->
@@ -50,7 +50,7 @@
 
         </div>
         <br/>
-        <button id="submit-problems-button" type="submit" class="btn btn-default">Submit</button>
+        <button id="submit-problems-button" type="submit" class="btn">Submit</button>
     <!-- </form> -->
     </div>
         
@@ -96,7 +96,8 @@
             };
 
             $('.result-problems').on("tap", function() {
-                $(this).toggleClass('selected');
+                $(this).toggleClass('unselected', 'selected');
+                console.log(this.id);
             });
         });
 

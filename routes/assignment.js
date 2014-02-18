@@ -30,7 +30,7 @@ exports.view = function(req, res) {
 	if (assignment_id) {
 		assignment = assignmentsData.assignments.filter(function(pset) {
 			if (pset.id == assignment_id) {
-				assignmentName = pset.name;
+				assignmentName = pset.name.substring(0, 10);
 				return true;
 			}
 		});

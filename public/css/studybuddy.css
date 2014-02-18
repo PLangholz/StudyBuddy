@@ -1,43 +1,9 @@
-
-#header {
-    background-color: #2a6496;
-    padding: 10px 10px;
-    font-family: 'Helvetica Neue';
-    font-weight: lighter;
-    font-size: 18px;
-    color: whitesmoke;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-#header .home_button {
-    float: left;
-}
-
-#header .title {
-    margin: auto;
-}
-
-#header .logout {
-    font-size: 12px;
-    display: inline;
-    float: right;
-    padding-right: 8px;
-    text-align: right;
-}
-
-
-#home-icon {
-    padding-right: 10px;
-}
-
 #main-content {
     background-color:  whitesmoke;
-    padding: 15px 10px 10px 10px;
+    padding: 15px 10px 15px 10px;
     min-height: 340px;
     font-family: 'Helvetica Neue';
-    font-weight: lighter;
+    font-weight: 400;
     font-size: 14px;
 }
 
@@ -55,30 +21,28 @@
 }
 
 
-
+a.thumbnail {
+    box-shadow: none;
+}
 
 .action-thumbnail {
     text-align: center;
-}
-
-.main-nav-icon {
-    /*width: 110px;*/
-    padding: 10px;
+    margin-top: 5%;
 }
 
 .profile-box {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    background-color: whitesmoke;
-    padding: 40px 5px;
+    background-color: white;
+    padding: 5px;
     float: center;
+    margin-top: 5%;
+    margin-bottom: 1%;
 }
 
-.profile-box ul {
-    list-style-type: none;
-    margin: 0px;
-    padding: 0px 0px 0px 30px;
+div#prof-photo {
+    margin-top: 3px;
 }
 
 a {
@@ -89,7 +53,7 @@ a:hover {
     text-decoration: none;
 }
 
-a#home-link {
+a.nav-link {
     color: white;
 }
 
@@ -101,8 +65,12 @@ div#search-bar {
 
 button#search-button {
     margin-top: 10px;
-    width: 100%;
     height: 50px;
+    width: 100%;
+    color: white;
+    background-color: #2a6496;
+    font-weight: 400;
+    border:none;
 }
 
 div#results {
@@ -111,12 +79,12 @@ div#results {
 
 div.result {
     border-bottom: 1px solid white;
-    background-color: lightgray;
+    background-color: whitesmoke;
     font-size: 10px;
 }
 
 div.result-problems {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid whitesmoke;
     background-color: #8C1515;
     font-size: 12px;
     color: white;
@@ -125,11 +93,15 @@ div.result-problems {
 }
 
 div.unselected {
-    background-color: #8C1515;
+    background-color: green;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
 }
 
 div.selected {
-    background-color: green;
+    background-color: #8C1515;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
 }
 
 div.result h4 {
@@ -141,8 +113,50 @@ h2 {
     font-weight: lighter;
 }
 
-#submit-problems-button {
-    width: 100%;
+h2.problem-name {
+    font-size: 20px;
+    display: inline-block;
+    line-height: 10px;
 }
 
-input[type=checkbox] {width:100px; height:100px;}
+button#submit-problems-button {
+    width: 100%;
+    border: none;
+    background-color: #2a6496;
+    color: white;
+    font-weight: 300;
+}
+
+table#home-prof-info td {
+    font-weight: 300;
+    padding: 3px;
+    font-size: 10px;
+}
+
+button#update-prof {
+    width: 100%;
+    color: white;
+    background-color: #2a6496;
+    font-weight: 400;
+}
+
+div.description {
+    margin-top: 10px;
+}
+
+div.details-left {
+    font-size: 14px;
+}
+
+h4.assignment-name {
+    font-size: 16px;
+}
+
+h4.assignment_header {
+    font-weight: 200;
+}
+
+h2.problems-header {
+    font-size: 24px;
+    font-weight: 800;
+}
