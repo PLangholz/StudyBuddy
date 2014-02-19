@@ -1,9 +1,10 @@
 
-var match_request = require("./match_requests.json");
+var match_request = require("../match_request.json");
 var courses = require("./courses.json");
 var assignments = require("./assignments.json");
 var user_data = require("../user_data.js");
 var matches = require("../matches.json");
+var users = require("../data.json")
 
 function getUserFromId(id) {
 	var user_list = users['users'];
