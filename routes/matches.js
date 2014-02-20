@@ -95,7 +95,7 @@ exports.view = function(req, res){
 	}
   }
 
-  
+  console.log(all_user_matches);
 
   res.render('matches', 
   {
