@@ -11,6 +11,48 @@ $(document).ready(function() {
 	});
 
 	$(".editbtn").click(function () {
+		var known = new Array();
+		var unknown = new Array();
+		var form_string = "<form action='/edit-match-request' method='post' role='form'>";
+		$(this).parent(".match_inf").find(".known li").each(function(){
+			form_string += "<input type=\"checkbox\"" + 
+				"name=\"" + $(this).html()+"\"" +
+				"value=\"" + $(this).html()+"\" checked=true"+
+				" class=\"question_box\">" +
+				"<p>"+ $(this).html() + "</p></br>";
+		});
+			$(this).parent(".match_inf").find(".unknown li").each(function(){
+				form_string += "<input type=\"checkbox\"" + 
+					"name=\"" + $(this).html()+"\"" +
+					"value=\"" + $(this).html()+"\"" +
+					" class=\"question_box\">" +
+					"<p>" +$(this).html() + "</p></br>";
+			});
+			$(this).parent('.match_inf').html(
+				"<p> Check the boxes of the" + 
+				"problems you know</p>" + form_string + "</form>" +
+				"<div class=\"clickable submit\">" +
+				"<p>SUBMIT</p></div>");
+			$(".submit").each(function() {
+				$(this).click(function() {
+					var assign_id = $(this).parent(".match_inf").attr('id');
+					var known = new Array();
+					$(this).parent(".match_inf").find(".question_box:checked").each(function() {
+						known.push($(this).val());
+					});
+					var unknown = new Array();
+					$(this).parent(".match_inf").find(".question_box:not(:checked)").each(function() {
+						unknown.push($(this).val());
+					});
+					$.post("/post-update-match-request", {
+						'assign_id' : assign_id,
+						'known' : known,
+						'unknown' : unknown
+					}, updateRequest);
+
+					
+				});
+			});
 
 
 	});

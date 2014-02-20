@@ -43,16 +43,22 @@
                 					</a>
                 					<div id="collapse{{id}}" class="accordion-body collapse">
                         			<div class="details-left col-md-12 match_inf" id="{{id}}">
-			                           	<p> You know problems &nbsp;
-                                            {{#each problems_known}}
-                                                {{this}}, &nbsp;
-                                            {{/each}}
-                                        </p>
-										<p> You need help on: &nbsp;
-                                            {{#each problems_unknown}}
-                                                {{this}}, &nbsp;
-                                            {{/each}}
-                                        </p>
+			                           	<div class="known">
+                                            You know problems
+                                            <ul class="problem-list">
+                                                {{#each problems_known}}
+                                                    <li>{{this}}</li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+										<div class="unknown">
+                                            You need help on problems
+                                            <ul class="problem-list">
+                                                {{#each problems_unknown}}
+                                                    <li>{{this}}</li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
 
                                         <button class="btn editbtn" id="edit-{{id}}">
                                             <i class="icon-pencil"></i> 
