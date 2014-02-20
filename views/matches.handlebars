@@ -43,21 +43,26 @@
                 					</a>
                 					<div id="collapse{{id}}" class="accordion-body collapse">
                         			<div class="details-left col-md-12 match_inf" id="{{id}}">
-			                           	<div class="known">
-                                            You know problems
-                                            <ul class="problem-list">
-                                                {{#each problems_known}}
-                                                    <li>{{this}}</li>
-                                                {{/each}}
-                                            </ul>
-                                        </div>
-										<div class="unknown">
-                                            You need help on problems
-                                            <ul class="problem-list">
-                                                {{#each problems_unknown}}
-                                                    <li>{{this}}</li>
-                                                {{/each}}
-                                            </ul>
+			                           	
+                                        <div class="row">
+                                            <div class="unknown col-xs-8">
+                                                <div class="problems-label">You need help on problems</div>
+                                                <ul class="problem-list">
+                                                    {{#each problems_unknown}}
+                                                        <li class="img-rounded">{{this}}</li>
+                                                    {{/each}}
+                                                </ul>
+                                            </div>
+                                        </div>                                        
+                                        <div class="row">
+                                            <div class="known col-xs-8">
+                                                <div class="problems-label">You know problems</div>
+                                                <ul class="problem-list">
+                                                    {{#each problems_known}}
+                                                        <li class="img-rounded">{{this}}</li>
+                                                    {{/each}}
+                                                </ul>
+                                            </div>
                                         </div>
 
                                         <button class="btn editbtn" id="edit-{{id}}">
