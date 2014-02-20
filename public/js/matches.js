@@ -9,7 +9,14 @@ $(document).ready(function() {
 			$(this).siblings(".match_info").toggle();
 		}); 
 	});
-	initClick();
+
+	$(".editbtn").click(function () {
+
+
+	});
+
+
+	//initClick();
 });
 
 function initClick() {

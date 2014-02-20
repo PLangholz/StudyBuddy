@@ -24,6 +24,9 @@
 	{{> header}}
 
 	<div class="container">
+
+        {{> status_messages }}
+
 		<div class="matches pending">
 			<h2>Your Pending Matches....</h2>
 			{{#each all_user_unmatched}}
@@ -33,58 +36,37 @@
 	            			<div class="accordion-group">
 		     			        <div class="accordion-heading">
 	                				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{game.id}}" href="#collapse{{id}}"> 
-	                    			<h4 class="class-name">
-	                        			{{class.name}} : {{assignment.name}}
-	                        			<span class="arrow"><i style="float: right;" class="fa fa-chevron-down fa-xs"></i></span>
-	                   				 </h4>
+    	                    			<h4 class="class-name">
+    	                        			{{course.name}} : {{assignment.name}}
+    	                        			<span class="arrow"><i style="float: right;" class="fa fa-chevron-down fa-xs"></i></span>
+    	                   				 </h4>
                 					</a>
                 					<div id="collapse{{id}}" class="accordion-body collapse">
                         			<div class="details-left col-md-12 match_inf" id="{{id}}">
-			                           	<p> You know:</p>
-										<ul class="known">
-										{{#each problems_known}}
-											<li>{{this}}</li>
-										{{/each}}
-										</ul>
-										<p> You need help on:</p>
-										<ul class="unknown">
-											{{#each problems_unknown}}
-												<li>{{this}}</li>
-											{{/each}}
-										</ul>
-										<div class="clickable edit">
-											<p>EDIT</p>
-										</div>
-										<div class="clickable delete">
-											<p>DELETE</p>
-										</div>
-                        			</div>
-                    			</div>
-                			</div>
-                		</div>
-            		</div>
-       			 </div>
-            </div>
-		{{/each}}
-	</div>
-	<div class="matches recent">
-		<h2>Recent Matches</h2>
-		{{#each all_user_matches}}
-		<div class="result row">
-				 	<div class="col-xs-12">
-	           			<div class="accordion" id="accordion{{id}}">
-	            			<div class="accordion-group">
-		     			        <div class="accordion-heading">
-	                				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{game.id}}" href="#collapse{{id}}"> 
-	                    			<h4 class="class-name">
-	                        			<p><span>{{other_user.first_name}} {{other_user.last_name}}</span> {{class.name}} : {{assignment.name}}</p>
-	                        			<span class="arrow"><i style="float: right;" class="fa fa-chevron-down fa-xs"></i></span>
-	                   				 </h4>
-                					</a>
-                					<div id="collapse{{id}}" class="accordion-body collapse">
-                        			<div class="details-left col-md-12 match_inf" id="{{id}}">	
-                        				<p>{{other_user.first_name}}'s Email: <a href="mailto:{{other_user.email}}">{{other_user.email}}</a></p>
-										<p>{{other_user.first_name}}'s Phone Number: <a href="tel:{{other_user.phone_number}}">{{other_user.phone_number}}</a></p>		                          
+			                           	<p> You know problems &nbsp;
+                                            {{#each problems_known}}
+                                                {{this}}, &nbsp;
+                                            {{/each}}
+                                        </p>
+										<p> You need help on: &nbsp;
+                                            {{#each problems_unknown}}
+                                                {{this}}, &nbsp;
+                                            {{/each}}
+                                        </p>
+
+                                        <button class="btn editbtn" id="edit-{{id}}">
+                                            <i class="icon-pencil"></i> 
+                                            Edit
+                                        </button> 
+
+                                        <form action="/delete-match-request" method="post" role="form">
+                                            <input type="hidden" name="request[id]" class="text" value="{{id}}">
+                                            <button type="submit" class="btn" id="delete-{{id}}">
+                                                <i class="icon-remove"></i> 
+                                                Delete
+                                            </button>
+                                        </form>
+
                         			</div>
                     			</div>
                 			</div>
@@ -95,17 +77,53 @@
 		{{/each}}
 	</div>
 
-		<!-- stub of a link -- for "navigation skeleton" purpose Maybe add to header? -->
-		<a href="/search"> Search for a new match </a><br />
-		<a href="/update-profile"> Update profile </a><br />
+
+	<div class="matches recent">
+		<h2>Recent Matches</h2>
+		{{#each all_user_matches}}
+		<div class="result row">
+		 	<div class="col-xs-12">
+       			<div class="accordion" id="accordion{{id}}m">
+        			<div class="accordion-group">
+     			        <div class="accordion-heading">
+            				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{game.id}}" href="#collapse{{id}}m"> 
+                			<h4 class="class-name">
+                    			Match: {{other_user.first_name}} {{other_user.last_name}}
+                    			<span class="arrow"><i style="float: right;" class="fa fa-chevron-down fa-xs"></i></span>
+               				 </h4>
+                             <h4 class="class-name">
+                                Assignment: {{course.name}}, {{assignment.name}}
+                             </h4>
+        					</a>
+        					<div id="collapse{{id}}m" class="accordion-body collapse">
+                    			<div class="details-left col-md-12 match_inf" id="{{id}}m">	
+                    				<p>{{other_user.first_name}}'s Email: <a href="mailto:{{other_user.email}}">{{other_user.email}}</a></p>
+    								<p>{{other_user.first_name}}'s Phone Number: <a href="tel:{{other_user.phone_number}}">{{other_user.phone_number}}</a></p>		                          
+                    			</div>
+
+                                <form action="/delete-match" method="post" role="form">
+                                    <input type="hidden" name="match[id]" class="text" value="{{id}}">
+                                    <button type="submit" class="btn" id="delete-{{id}}">
+                                        <i class="icon-remove"></i> 
+                                        Reject or clear match
+                                    </button>
+                                </form>
+            			</div>
+        			</div>
+            		</div>
+        		</div>
+   			 </div>
+        </div>
+		{{/each}}
+	</div>
 </div>
 
 <script src="https://code.jquery.com/jquery.js"></script>
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/introHCI.js"></script>
 	<script src="/js/matches.js"></script>
+    <script src="/js/studybuddy.js"></script>
 
 </body>
 

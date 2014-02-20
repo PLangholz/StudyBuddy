@@ -1,6 +1,6 @@
 var data = require('./match_request.json');
-var match_object_interface = require('./match_data.js')
-
+var match_object_interface = require('./match_data.js');
+var course_data = require('./course_data.js');
 
 /*-----------------------------------------------------*
  *	
@@ -112,15 +112,31 @@ var match_object_interface = require('./match_data.js')
  *-----------------------------------------------------*/
 
 
+
+
+ exports.annotate_with_course_info = function(match_requests) {
+ 	for (var i = 0; i < match_requests.length; i++) {
+ 		var course_id = match_requests[i].course_id;
+ 		var course = course_data.get_course_by_id(course_id);
+ 		var assignment_id = match_requests[i].assignment_id;
+ 		var assignment = course_data.get_assignment_by_id(assignment_id);
+ 		match_requests[i]['course'] = course;
+ 		match_requests[i]['assignment'] = assignment;
+ 	}
+ 	return match_requests;
+ }
+
+
  exports.delete_match_request = function(match_request_id) {
  	for (var i = 0; i < data.match_requests.length; i++) {
  		if (data['match_requests'][i].id == match_request_id) {
+ 			console.log("deleting ");
+ 			console.log(data['match_requests'][i]);
  			data['match_requests'].splice(i, 1);
  			return;
  		}
  	}
  }
-
 
 
  exports.set_match_request_to_pending = function(match_request_id) {
@@ -158,9 +174,9 @@ var match_object_interface = require('./match_data.js')
  	// cycle through all match requests
  	// if the pending = false then it is no longer a 
  	// request really so we are not returning it
-	for (var i = 0; i < all_matches.length; i ++ ) {
+	for (var i = 0; i < all_match_requests.length; i ++ ) {
 		if (all_match_requests[i].user_id == user_id &&
-			all__match_requests[i].pending) {
+			all_match_requests[i].pending) {
 			relevant_match_requests.push(all_match_requests[i]);
 		}
 	}
@@ -178,8 +194,9 @@ var match_object_interface = require('./match_data.js')
  exports.array_intersection = function(shorter, longer) {
  	var result = new Array();
  	for (var i = 0; i < longer.length; i++) {
- 		if (shorter.indexOf(longer[i]) ! = -1)
- 			result.push(longer[i]);
+ 		if (shorter.indexOf(longer[i]) != -1) {
+ 			result.push(longer[i]); 			
+ 		}
  	}
  	return result;
  }
@@ -198,7 +215,7 @@ var match_object_interface = require('./match_data.js')
  			continue;
  		var longer = match_request_obj.problems_known;
  		var shorter = all_requests[i].problems_known
- 		if (shorter.length > longer.length)) {
+ 		if (shorter.length > longer.length) {
 			shorter = longer;
 			longer = all_requests[i].problems_known;
 		}

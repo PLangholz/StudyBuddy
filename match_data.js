@@ -1,6 +1,8 @@
 
 var data = require('./matches.json');
 var match_request_interface = require('./match_request_data.js');
+var user_data = require('./user_data.js');
+var course_data = require('./course_data.js');
 
 /*-----------------------------------------------------*
  *	
@@ -109,25 +111,52 @@ var match_request_interface = require('./match_request_data.js');
  *-----------------------------------------------------*/
 
 
- exports.delete_match = function(match_request, deleting_user_id) {
+
+exports.annotate_with_other_user_data = function(matches, curr_user_id) {
+	for (var i=0; i < matches.length; i++) {
+		var match = matches[i];
+		var other_user_id = match.first_user_id;
+		if (other_user_id == curr_user_id) {
+			other_user_id = match.second_user_id;
+		}
+		var user = user_data.get_user_by_id(other_user_id);
+		match['other_user'] = user;
+	}
+	return matches;
+}
+
+ exports.annotate_with_course_info = function(matches) {
+ 	for (var i = 0; i < matches.length; i++) {
+ 		var request = match_request_interface.get_match_request_by_id(matches[i].first_user_request_id);
+ 		var course = course_data.get_course_by_id(request.course_id);
+ 		var assignment = course_data.get_assignment_by_id(request.assignment_id);
+ 		matches[i]['course'] = course;
+ 		matches[i]['assignment'] = assignment;
+ 	}
+ 	return matches;
+ }
+
+
+
+ exports.delete_match = function(match_id, deleting_user_id) {
+ 	var match = exports.get_match_by_id(match_id);
  	var match_request_id_to_delete = undefined;
  	var match_request_id_to_update = undefined;
- 	if (deleting_user_id == match_request.first_user_id) {
- 		match_request_id_to_delete = match_request.first_user_request_id;
- 		match_request_id_to_update = match_request.second_user_request_id;
- 	else {
- 		match_request_id_to_delete = match_request.second_user_request_id;
- 		match_request_id_to_update = match_request.first_user_request_id;
+ 	if (deleting_user_id == match.first_user_id) {
+ 		match_request_id_to_delete = match.first_user_request_id;
+ 		match_request_id_to_update = match.second_user_request_id;
+ 	} else {
+ 		match_request_id_to_delete = match.second_user_request_id;
+ 		match_request_id_to_update = match.first_user_request_id;
  	}
  	//delete the request of the deleter
  	match_request_interface.delete_match_request(match_request_id_to_delete);
  	//update the other one to pending again.
- 	match_request_interface.set_match_request_to_pending(
- 		match_request_id_to_update);
+ 	match_request_interface.set_match_request_to_pending(match_request_id_to_update);
 
  	// now we find this match object and delete it
- 	for (var i = match_request.id; i >= 0; i--) {
- 		if (data['matches'][i].id == match_request.id) {
+ 	for (var i = match.id; i >= 0; i--) {
+ 		if (data['matches'][i].id == match.id) {
  			data['matches'].splice(i, 1);
  			break;
  		}

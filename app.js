@@ -57,8 +57,8 @@ app.post('/post-login', user.login_or_signup);
 app.post('/post-update-profile', user.handle_update_profile);
 app.post('/post-update-match-request', matches.update_request);
 app.post('/post-create-match-request', matches.create_match_request);
-
-
+app.post('/delete-match-request', matches.delete_match_request);
+app.post('/delete-match', matches.delete_match);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

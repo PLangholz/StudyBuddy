@@ -1,17 +1,17 @@
 
+/***************************************************************/
+/* Are these functions still necessary? */
+
+/*
 var match_request = require("../match_request.json");
 var courses = require("./courses.json");
 var assignments = require("./assignments.json");
-var user_data = require("../user_data.js");
 var matches = require("../matches.json");
-var users = require("../data.json");
+
 
 function getUserFromId(id) {
-	var user_list = users['users'];
-	for (var i = 0; i < user_list.length; i ++ ) {
-		if (user_list[i].id == id)
-			return user_list[i];
-	}
+	var user = user_data.get_user_by_id(id);
+    return user;
 };
 
 
@@ -49,60 +49,44 @@ function hasBeenMatched(request_id) {
 	}
 	return false;
 };
+*/
+/***************************************************************/
 
+var match_request_data = require("../match_request_data.js");
+var match_data = require("../match_data.js");
+var user_data = require("../user_data.js");
+
+/* Main page for matches */
 exports.view = function(req, res){
   if (req.session.curr_user_id == undefined) {
   	res.redirect("/login");
   	return;
   }
-  var curr_user = user_data.get_user_by_id(req.session.curr_user_id);
+  var user_id = req.session.curr_user_id;
+  var curr_user = user_data.get_user_by_id(user_id);
+  var requests = match_request_data.get_match_requests_by_user_id(user_id);
+  /* add info about class name, assignment name */
+  requests = match_request_data.annotate_with_course_info(requests);
+  var matches = match_data.get_matches_by_user(user_id);
+  matches = match_data.annotate_with_other_user_data(matches, user_id);
+  matches = match_data.annotate_with_course_info(matches);
+    
+  console.log("requests");
+  console.log(requests);
+  console.log("matches");
+  console.log(matches);
 
-  var all_requests = match_request['match_requests'];
-  var all_matches = matches['matches'];
-  var all_user_matches = new Array();
-  var all_user_unmatched = new Array();
-  for (var j = 0; j < all_requests.length; j++){
-  	if (hasBeenMatched(all_requests[j].id))
-  		continue;
-  	if (all_requests[j]['user_id'] == curr_user.id){
-  		var unmatched_request = all_requests[j];
-  		unmatched_request['class'] = 
-  			getClassFromId(unmatched_request.course_id);
-  		unmatched_request['assignment'] = 
-  			getAssignmentFromId(unmatched_request.assignment_id);
-
-  		all_user_unmatched.push(all_requests[j]);
-  	}
-  }
-  for (var k = 0; k < all_matches.length; k++) {
-  	var other_user_id = undefined;
-  	var match = undefined;
-  	if (all_matches[k].first_user_id == curr_user.id) {
-  		match = all_matches[k];
-  		other_user_id = all_matches[k].second_user_id;
-
-  	} else if (all_matches[k].second_user_id == curr_user.id) {
-  		match = all_matches[k];
-  		other_user_id = all_matches[k].first_user_id;
-  	}
-  	if (other_user_id) {
-	  	var other_user = getUserFromId(match.second_user_id);
-	  	match['other_user'] = other_user;
-	  	var match_request_obj = getMatchRequestFromId(match.first_user_request_id);
-	  	match['class'] = getClassFromId(match_request_obj.course_id);
-	  	match['assignment'] = getAssignmentFromId(match_request_obj.assignment_id);
-	  	all_user_matches.push(match);
-	}
-  }
-
-  console.log(all_user_matches);
+  // grab status message if there is one and flush
+  var status_messages = req.session.status_messages;
+  req.session.status_messages = [];
 
   res.render('matches', 
   {
   	'title' : 'Matches',
-  	'all_user_unmatched' : all_user_unmatched,
-  	'all_user_matches' : all_user_matches,
-    'username': req.session.username
+  	'all_user_unmatched' : requests,
+  	'all_user_matches' : matches,
+    'username': req.session.username,
+    'status_messages': status_messages,
   });
   
 };
@@ -147,4 +131,38 @@ exports.update_request = function(req, res) {
 	res.json(match_request);
 
 };
+
+
+exports.delete_match_request = function(req, res) {
+    var request = req.body.request;
+    var id = parseInt(request.id);
+    match_request_data.delete_match_request(id);
+
+    // Add a status message about what happened
+    var status_messages = [{"text": "Pending match request deleted.", "class": "success-message", "glyphicon": "glyphicon-ok"}];
+    req.session.status_messages = status_messages;
+
+    // redirect to matches page
+    res.redirect("/matches");
+    return; 
+}
+
+exports.delete_match = function(req, res) {
+    var match = req.body.match;
+    var match_id = parseInt(match.id);
+    match_data.delete_match(match_id, req.session.curr_user_id);
+
+    // Add a status message about what happened
+    var status_messages = [{"text": "Pending match request deleted.", "class": "success-message", "glyphicon": "glyphicon-ok"}];
+    req.session.status_messages = status_messages;
+
+    // redirect to matches page
+    res.redirect("/matches");
+    return; 
+}
+
+
+
+
+
 
