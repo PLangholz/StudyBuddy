@@ -49,7 +49,7 @@ app.get('/matches', matches.view);
 app.get('/search', search.view);
 app.get('/assignment', assignment.view);
 app.get('/confirmation', confirmation.view);
-
+app.get('/get_classes_query', search.get_classes_from_query);
 
 app.get('/new-profile', user.create_new_profile);
 app.get('/update-profile', user.render_update_profile);
@@ -57,6 +57,7 @@ app.post('/post-login', user.login_or_signup);
 app.post('/post-update-profile', user.handle_update_profile);
 app.post('/post-update-match-request', matches.update_request);
 app.post('/post-create-match-request', matches.create_match_request);
+
 
 
 http.createServer(app).listen(app.get('port'), function(){

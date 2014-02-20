@@ -17,5 +17,30 @@ function initializePage() {
 
 }
 
+$('#search-input').keypress(function() {
+            
+      var searchQuery = $(this).val();
+      var results = $.get('/get_classes_query', {'query': searchQuery}, populateAutoComplete);
+
+              
+        });
+
+        function populateAutoComplete(result) {
+          var classMatches = [];
+          for (var i = 0; i < result.length; i++) {
+          	console.log(result[i].name);
+          	console.log(classMatches);
+          	classMatches.push(result[i].name);
+          }
+          console.log(classMatches);
+        	$("#search-input").autocomplete({
+                      source: classMatches
+                    });
+            console.log("POPULATING AUTO COMPLETE WITH: "+JSON.stringify(result));
+        }
+
+          
+
+
 
 

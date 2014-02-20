@@ -12,12 +12,15 @@ exports.view = function(req, res){
     }
     var curr_user = user_data.get_user_by_id(req.session.curr_user_id);
 
-	var query = req.query.query;
+	var queryUnsplit = req.query.query;
 	var matches = courseData;
-	if (query) {
+	if (queryUnsplit) {
 		matches = courseData.courses.filter(function(course){
 			var contString = course.name.split(' ').join('');
-			return contString.toLowerCase().indexOf(query.toLowerCase()) >= 0;
+			// console.log("CONT STRING: "+contString);
+			// console.log("QUERY: "+query);
+			var querySplit = queryUnsplit.split(' ').join('');
+			return contString.toLowerCase().indexOf(querySplit.toLowerCase()) >= 0;
 		});
 	}
 	else {
@@ -26,16 +29,28 @@ exports.view = function(req, res){
 		});
 	}
 	console.log(matches.length);
-	for (var i = 0; i < matches.length; i++) {
-		console.log("changing "+matches[i].name);
-		matches[i].name = matches[i].name.substring(0, 35);
-	}
+	// for (var i = 0; i < matches.length; i++) {
+	// 	console.log("changing "+matches[i].name);
+	// 	matches[i].name = matches[i].name.substring(0, 35);
+	// }
 	console.log(matches);
   res.render('search', 
   	{
-  		'query' : query,
+  		'query' : queryUnsplit,
   		'title' : 'Search',
   		'matches' : matches,
       'username': req.session.username
   	});
 };
+
+exports.get_classes_from_query = function(req, res) {
+	var query = req.query.query;
+	var matches = {};
+	if (query) {
+		matches = courseData.courses.filter(function(course){
+			var contString = course.name.split(' ').join('');
+			return contString.toLowerCase().indexOf(query.toLowerCase()) >= 0;
+		});
+	}
+	res.json(matches);
+}
