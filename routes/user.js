@@ -50,6 +50,7 @@ exports.create_new_profile = function(req, res) {
     var new_user = user_data.get_user_by_id(req.session.curr_user_id);
     res.render('create_profile', {
             'title' : 'Create Profile',
+            'no_home_button' : true,
             'user': new_user
     });
 }

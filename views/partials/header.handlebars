@@ -3,9 +3,13 @@
     <div class="row">
         <div class="col-xs-4">
             {{#if username}}
-            <div class="icon">
-                <a class="nav-link" href="/"><i class="fa fa-home fa-med nav-icon" alt="Home"></i></a>
-            </div>
+                {{#if no_home_button}}
+
+                {{else}}
+                    <div class="icon">
+                        <a class="nav-link" href="/"><i class="fa fa-home fa-med nav-icon" alt="Home"></i></a>
+                    </div>
+                {{/if}}
             <div class="icon">
                 <a class="nav-link" href="/search"><i class="fa fa-search fa-med nav-icon" alt="Search"></i></a>
             </div>
@@ -16,11 +20,9 @@
         </div>
         <div class="col-xs-4">
             <div class="title">
-<<<<<<< HEAD
-            	<span id="header-name">StuddyBuddy</span>
-=======
+
             	<span id="header-name">StuddyBuddy</span>		
->>>>>>> a7811ee9aefb96aec966daae3ebc73d153e3ebc5
+
             </div>
         </div>
         <div class="col-xs-4">
