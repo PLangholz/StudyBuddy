@@ -94,14 +94,14 @@ div.result-problems {
 
 div.unselected {
     background-color: green;
-    -webkit-transition-timing-function: ease-in-out;
-    transition-timing-function: ease-in-out;
+/*    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;*/
 }
 
 div.selected {
     background-color: #8C1515;
-    -webkit-transition-timing-function: ease-in-out;
-    transition-timing-function: ease-in-out;
+/*    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;*/
 }
 
 div.result h4 {
@@ -125,6 +125,7 @@ button#submit-problems-button {
     background-color: #2a6496;
     color: white;
     font-weight: 300;
+    margin-bottom: 10px;
 }
 
 table#home-prof-info td {

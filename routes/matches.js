@@ -112,11 +112,16 @@ function get_new_match_request_id() {
 }
 
 exports.create_match_request = function(req, res) {
-	var known = req.body.known;
-	var unknown = req.body.unknown;
-	var user_id = req.session.curr_user_id;
-	var assign_id = req.body.assign_id;
+	var assign_id = req.query.id;
 	var assign_obj = getAssignmentFromId(assign_id);
+	var known = new Array();
+	var unknown = new Array();
+	var numProblems = assign_obj.problems.length;
+	for (var i = 1; i <= numProblems; i++) {
+		if(req.body['checkbox-'+i]) known.push(i);
+		else unknown.push(i);
+	}
+	var user_id = req.session.curr_user_id;	
 	var new_match_request_id = get_new_match_request_id();
 
 	var new_match = 
@@ -130,7 +135,7 @@ exports.create_match_request = function(req, res) {
 	}
 
 	match_request['match_requests'].push(new_match);
-	res.send(200);
+	res.redirect('login');
 }
 
 exports.update_request = function(req, res) {
