@@ -9,39 +9,43 @@ $(document).ready(function() {
 			$(this).siblings(".match_info").toggle();
 		}); 
 	});
+	initClick();
+});
+
+function initClick() {
 	$(".edit").each(function () {
 		$(this).click(function() {
 			var known = new Array();
 			var unknown = new Array();
 			var form_string = "<form>";
-			$(this).parent(".match_info").find(".known li").each(function(){
+			$(this).parent(".match_inf").find(".known li").each(function(){
 				form_string += "<input type=\"checkbox\"" + 
 					"name=\"" + $(this).html()+"\"" +
 					"value=\"" + $(this).html()+"\" checked=true"+
 					" class=\"question_box\">" +
 					"<p>"+ $(this).html() + "</p></br>";
 			});
-			$(this).parent(".match_info").find(".unknown li").each(function(){
+			$(this).parent(".match_inf").find(".unknown li").each(function(){
 				form_string += "<input type=\"checkbox\"" + 
 					"name=\"" + $(this).html()+"\"" +
 					"value=\"" + $(this).html()+"\"" +
 					" class=\"question_box\">" +
 					"<p>" +$(this).html() + "</p></br>";
 			});
-			$(this).parent('.match_info').html(
+			$(this).parent('.match_inf').html(
 				"<p> Check the boxes of the" + 
 				"problems you know</p>" + form_string + "</form>" +
 				"<div class=\"clickable submit\">" +
 				"<p>SUBMIT</p></div>");
 			$(".submit").each(function() {
 				$(this).click(function() {
-					var assign_id = $(this).parent(".match_info").attr('id');
+					var assign_id = $(this).parent(".match_inf").attr('id');
 					var known = new Array();
-					$(this).parent(".match_info").find(".question_box:checked").each(function() {
+					$(this).parent(".match_inf").find(".question_box:checked").each(function() {
 						known.push($(this).val());
 					});
 					var unknown = new Array();
-					$(this).parent(".match_info").find(".question_box:not(:checked)").each(function() {
+					$(this).parent(".match_inf").find(".question_box:not(:checked)").each(function() {
 						unknown.push($(this).val());
 					});
 					$.post("/post-update-match-request", {
@@ -58,7 +62,7 @@ $(document).ready(function() {
 
 
 
-})
+};
 
 function updateRequest(data) {
 	var html_string = "<p> You know:</p>" +
@@ -79,7 +83,8 @@ function updateRequest(data) {
 		"<div class=\"clickable delete\">" +
 		"<p>DELETE</p></div>";
 	var curr_id = data['id'];
-	$(".match_info#"+curr_id+"").html(html_string);
+	$(".match_inf#"+curr_id+"").html(html_string);
+	initClick();
 }
 
 
