@@ -142,6 +142,7 @@ var course_data = require('./course_data.js');
  exports.set_match_request_to_pending = function(match_request_id) {
  	for (var i = 0; i < data.match_requests.length; i++) {
  		if (data['match_requests'][i].id == match_request_id) {
+ 			console.log("setting to pending");
  			data['match_requests']['pending'] = true;
  			return;
  		}
@@ -187,6 +188,8 @@ var course_data = require('./course_data.js');
  exports.get_next_id = function() {
  	var all_requests = data['match_requests'];
  	var last_index = all_requests.length - 1;
+ 	if (last_index <= 0)
+ 		return 0;
  	return all_requests[last_index].id + 1;
  }
 
@@ -219,13 +222,17 @@ var course_data = require('./course_data.js');
 			shorter = longer;
 			longer = all_requests[i].problems_known;
 		}
-		var intersection = array_intersection(shorter, longer);
+		var intersection = exports.array_intersection(shorter, longer);
 		// we know the intersection can only be as long as 
 		// the shorter of the two arrays
 		// this is saying that the overlap is how many
 		// are in the shorter, that aren't in both
 		// i.e how many do they have not in common
+		
 		overlap = shorter.length - intersection.length;
+		console.log("shorter:" + shorter);
+		console.log(" longer : "+ longer);
+		console.log(" intersection : "+ intersection);
 		if (overlap > greatest_overlap) {
 			greatest_overlap = overlap;
 			greatest_overlap_index = i;
@@ -241,22 +248,24 @@ var course_data = require('./course_data.js');
 
  exports.submit_match_request = function (user_id, assignment_id, course_id, problems_known, problems_unknown) {
  	var new_match_request_obj = [];
- 	var next_id = get_next_id();
+ 	var next_id = exports.get_next_id();
  	new_match_request_obj['id'] = next_id;
  	new_match_request_obj['user_id'] = user_id;
  	new_match_request_obj['assignment_id'] = assignment_id;
  	new_match_request_obj['course_id'] = course_id;
- 	new_match_request_obj['problems_unknown'] = problems_unknown;
  	new_match_request_obj['problems_known'] = problems_known;
- 	var poss_match = possible_match(new_match_request_obj)
+ 	new_match_request_obj['problems_unknown'] = problems_unknown;
+ 	
+ 	var poss_match = exports.possible_match(new_match_request_obj);
  	if (poss_match != undefined) {
+ 		poss_match['pending'] = false;
  		match_object_interface.create_match_obj(poss_match, new_match_request_obj);
  		new_match_request_obj['pending'] = false;
 
  	} else {
  		new_match_request_obj['pending'] = true;
  	}
- 	data['match_request'].push(new_match_request_obj);
+ 	data['match_requests'].push(new_match_request_obj);
  }
 
 

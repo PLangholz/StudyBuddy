@@ -2,38 +2,11 @@
 	"match_requests": [
 		{
 			"id" : 0,
-			"user_id": 1, 
-			"assignment_id" : 1,
-			"course_id" : 2, 
+			"user_id": 3, 
+			"assignment_id" : 0,
+			"course_id" : 0, 
 			"problems_known" : [1,3,5],
 			"problems_unknown" : [2,4,6],
-			"pending" : true
-		},
-		{
-			"id" : 1,
-			"user_id": 0, 
-			"assignment_id" : 1,
-			"course_id" : 2, 
-			"problems_known" : [2,4,6],
-			"problems_unknown" : [1,3,5],
-			"pending" : true
-		},
-		{
-			"id" : 2,
-			"user_id": 1, 
-			"assignment_id" : 1,
-			"course_id" : 1, 
-			"problems_known" : [1,2],
-			"problems_unknown" : [3,4,5],
-			"pending" : true
-		},
-		{
-			"id" : 3,
-			"user_id": 0, 
-			"assignment_id" : 1,
-			"course_id" : 3, 
-			"problems_known" : [2,4,6],
-			"problems_unknown" : [1,3,5],
 			"pending" : true
 		}
 	]

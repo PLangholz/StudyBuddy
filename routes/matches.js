@@ -4,8 +4,8 @@
 
 /*
 var match_request = require("../match_request.json");
-var courses = require("./courses.json");
-var assignments = require("./assignments.json");
+var courses = require("./courses.json");*/
+var assignments = require("./assignments.json");/*
 var matches = require("../matches.json");
 
 
@@ -31,7 +31,7 @@ function getMatchRequestFromId(id) {
 			return match_list[i];
 	}
 };
-
+*/
 function getAssignmentFromId(id) {
 	var assignment_list = assignments['assignments'];
 	for (var i = 0; i < assignment_list.length; i ++ ) {
@@ -39,7 +39,7 @@ function getAssignmentFromId(id) {
 			return assignment_list[i];
 	}
 };
-
+/*
 function hasBeenMatched(request_id) {
 	var match_list = matches['matches'];
 	for (var i = 0; i < match_list.length; i++) {
@@ -91,10 +91,10 @@ exports.view = function(req, res){
   
 };
 
-function get_new_match_request_id() {
-	var new_match_id = match_request.match_requests.length;
-	return new_match_id;
-};
+// function get_new_match_request_id() {
+// 	var new_match_id = match_request_data.
+// 	return new_match_id;
+// };
 
 exports.create_match_request = function(req, res) {
 	var assign_id = req.body['assignment_id'];
@@ -107,19 +107,20 @@ exports.create_match_request = function(req, res) {
 		else unknown.push(i);
 	}
 	var user_id = req.session.curr_user_id;	
-	var new_match_request_id = get_new_match_request_id();
+	//var new_match_request_id = get_new_match_request_id();
+	match_request_data.submit_match_request(
+		user_id, assign_id, assign_obj.course_id, known, unknown);
+	// var new_match = 
+	// {
+		
+	// 	'user_id' : user_id,
+	// 	'assignment_id' : assign_id,
+	// 	'course_id' : assign_obj.course_id,
+	// 	'problems_known' : known,
+	// 	'problems_unknown' : unknown
+	// }
 
-	var new_match = 
-	{
-		'id' : new_match_request_id,
-		'user_id' : user_id,
-		'assignment_id' : assign_id,
-		'course_id' : assign_obj.course_id,
-		'problems_known' : known,
-		'problems_unknown' : unknown
-	}
-
-	match_request['match_requests'].push(new_match);
+//	match_request['match_requests'].push(new_match);
 	res.redirect("/");
 	return
 };

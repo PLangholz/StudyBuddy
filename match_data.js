@@ -1,4 +1,4 @@
-
+	
 var data = require('./matches.json');
 var match_request_interface = require('./match_request_data.js');
 var user_data = require('./user_data.js');
@@ -126,6 +126,8 @@ exports.annotate_with_other_user_data = function(matches, curr_user_id) {
 }
 
  exports.annotate_with_course_info = function(matches) {
+ 	if (matches == undefined) 
+ 		return;
  	for (var i = 0; i < matches.length; i++) {
  		var request = match_request_interface.get_match_request_by_id(matches[i].first_user_request_id);
  		var course = course_data.get_course_by_id(request.course_id);
@@ -140,20 +142,12 @@ exports.annotate_with_other_user_data = function(matches, curr_user_id) {
 
  exports.delete_match = function(match_id, deleting_user_id) {
  	var match = exports.get_match_by_id(match_id);
- 	var match_request_id_to_delete = undefined;
- 	var match_request_id_to_update = undefined;
- 	if (deleting_user_id == match.first_user_id) {
- 		match_request_id_to_delete = match.first_user_request_id;
- 		match_request_id_to_update = match.second_user_request_id;
- 	} else {
- 		match_request_id_to_delete = match.second_user_request_id;
- 		match_request_id_to_update = match.first_user_request_id;
- 	}
- 	//delete the request of the deleter
- 	match_request_interface.delete_match_request(match_request_id_to_delete);
- 	//update the other one to pending again.
- 	match_request_interface.set_match_request_to_pending(match_request_id_to_update);
-
+ 	var first_match_request_id = match.first_user_request_id;
+ 	var second_match_reqeust_id = match.second_user_request_id;
+ 	
+ 	//update both requests to pending again.
+ 	match_request_interface.set_match_request_to_pending(first_match_request_id);
+	match_request_interface.set_match_request_to_pending(second_match_reqeust_id);
  	// now we find this match object and delete it
  	for (var i = match.id; i >= 0; i--) {
  		if (data['matches'][i].id == match.id) {
@@ -213,13 +207,15 @@ exports.get_matches_by_user = function(user_id) {
 exports.get_next_match_id = function() {
  	var all_matches = data['matches'];
  	var last_index = all_matches.length - 1;
+ 	if (last_index < 0)
+ 		return 0;
  	return all_matches[last_index].id + 1;
 }
 
 
 exports.create_match_obj = function(first_request, second_request) {
 	var new_match = [];
-	new_match['id'] = get_next_match_id();
+	new_match['id'] = exports.get_next_match_id();
 	new_match['first_user_id'] = first_request.user_id;
 	new_match['second_user_id'] = second_request.user_id;
 	new_match['first_user_request_id'] = first_request.id;
