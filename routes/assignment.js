@@ -15,7 +15,7 @@ function getClassFromId(id) {
 			return class_list[i];
 	}
 
-}
+};
 
 exports.view = function(req, res) {
     if (req.session.curr_user_id == undefined) {
@@ -38,7 +38,6 @@ exports.view = function(req, res) {
 	}
 
 	var class_obj = getClassFromId(assignment[0].course_id);
-
 	console.log(class_obj);
   	res.render('assignment', 
   	{

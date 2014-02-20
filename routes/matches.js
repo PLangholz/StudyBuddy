@@ -4,7 +4,7 @@ var courses = require("./courses.json");
 var assignments = require("./assignments.json");
 var user_data = require("../user_data.js");
 var matches = require("../matches.json");
-var users = require("../data.json")
+var users = require("../data.json");
 
 function getUserFromId(id) {
 	var user_list = users['users'];
@@ -12,7 +12,7 @@ function getUserFromId(id) {
 		if (user_list[i].id == id)
 			return user_list[i];
 	}
-}
+};
 
 
 function getClassFromId(id) {
@@ -22,7 +22,7 @@ function getClassFromId(id) {
 			return class_list[i];
 	}
 
-}
+};
 
 function getMatchRequestFromId(id) {
 	var match_list = match_request['match_requests'];
@@ -30,7 +30,7 @@ function getMatchRequestFromId(id) {
 		if (match_list[i].id == id)
 			return match_list[i];
 	}
-}
+};
 
 function getAssignmentFromId(id) {
 	var assignment_list = assignments['assignments'];
@@ -38,7 +38,7 @@ function getAssignmentFromId(id) {
 		if (assignment_list[i].id == id)
 			return assignment_list[i];
 	}
-}
+};
 
 function hasBeenMatched(request_id) {
 	var match_list = matches['matches'];
@@ -48,7 +48,7 @@ function hasBeenMatched(request_id) {
 			return true;
 	}
 	return false;
-}
+};
 
 exports.view = function(req, res){
   if (req.session.curr_user_id == undefined) {
@@ -95,7 +95,7 @@ exports.view = function(req, res){
 	}
   }
 
-  
+  console.log(all_user_matches);
 
   res.render('matches', 
   {
@@ -110,10 +110,10 @@ exports.view = function(req, res){
 function get_new_match_request_id() {
 	var new_match_id = match_request.match_requests.length;
 	return new_match_id;
-}
+};
 
 exports.create_match_request = function(req, res) {
-	var assign_id = req.query.id;
+	var assign_id = req.body['assignment_id'];
 	var assign_obj = getAssignmentFromId(assign_id);
 	var known = new Array();
 	var unknown = new Array();
@@ -136,8 +136,9 @@ exports.create_match_request = function(req, res) {
 	}
 
 	match_request['match_requests'].push(new_match);
-	res.redirect('login');
-}
+	res.redirect("/");
+	return
+};
 
 exports.update_request = function(req, res) {
 	var match_request = getMatchRequestFromId(req.body.assign_id);
@@ -145,5 +146,5 @@ exports.update_request = function(req, res) {
 	match_request['problems_unknown'] = req.body.unknown;
 	res.json(match_request);
 
-}
+};
 

@@ -32,18 +32,19 @@
 
         {{#each assignment}}
         <h4 class="assignment_header class{{course_id}}" id="assign{{id}}">{{course_name}}</h4><h4 class="assignment-name">{{name}}</h4>
-    <form class="form-inline" role="form" method="post" action="/post-create-match-request?id={{id}}">
-        {{#each problems}}
-        <div id="{{this}}" class="result-problems row unselected">
-            <div class="col-xs-12">
-                <div class="problem-option">
-                    <h2 class="problem-name">Problem {{this}}</h2>
-                    <input style="opacity: 0; position: absolute;" 
-                    checked="checked" type="checkbox" name="checkbox-{{this}}"></input>
+        <form class="form-inline" data-ajax="false" role="form" method="POST" action="/post-create-match-request">
+            <input type="hidden" name="assignment_id" value="{{id}}">
+            {{#each problems}}
+            <div id="{{this}}" class="result-problems row unselected">
+                <div class="col-xs-12">
+                    <div class="problem-option">
+                        <h2 class="problem-name">Problem {{this}}</h2>
+                        <input style="opacity: 0; position: absolute;" 
+                        checked="checked" type="checkbox" name="checkbox-{{this}}"></input>
+                    </div>
                 </div>
             </div>
-        </div>
-                {{/each}}
+            {{/each}}
         {{/each}}
         
 
@@ -68,11 +69,8 @@
     <script src="/js/jquery.mobile-1.4.1.js"></script>
 
     <script>
-        $(document).ready(function() {            
-            function redirectToMatches(response) {
-                window.location.replace('/matches');
-            };
-
+        $(document).ready(function() {   
+            console.log("ready");        
             $('.result-problems').on('tap', function(e) {
                 $(this).toggleClass('unselected', 'selected');
                 var inputProblem = $("input[name='checkbox-"+this.id+"']");
