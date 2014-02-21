@@ -110,6 +110,31 @@ var course_data = require('./course_data.js');
  *
  *-----------------------------------------------------*/
 
+exports.match_is_unseen = function(match, user_id) {
+	if (user_id == match.first_user_id) {
+		if (match.seen_by_first_user == 'unseen') {
+			return true;
+		}
+	} else {
+		if (match.seen_by_second_user == 'unseen') {
+			return true;
+		}
+	}
+	return false;
+}
+
+
+exports.get_unseen_matches_by_user = function(user_id) {
+	var matches = exports.get_matches_by_user(user_id);
+	var unseen_matches = [];
+	for (var i=0; i<matches.length; i++) {
+		if (exports.match_is_unseen(matches[i], user_id)) {
+			unseen_matches[unseen_matches.length] = matches[i];
+		}
+	}
+	return unseen_matches;
+}
+
 
 
 exports.annotate_with_other_user_data = function(matches, curr_user_id) {

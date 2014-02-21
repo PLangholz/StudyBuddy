@@ -182,5 +182,11 @@ ul.problem-list li {
     background-color: grey;
 }
 
+#logged-in-as {
+    display: inline;
+    float: left;
+    padding: 0px 5px;
+    font-size: 13px;
+}
 
 

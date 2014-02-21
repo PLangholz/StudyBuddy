@@ -73,8 +73,29 @@ exports.view = function(req, res){
   matches = match_data.annotate_with_course_info(matches);
 
   // grab status message if there is one and flush
-  var status_messages = req.session.status_messages;
+  var status_messages = [];
+  if (req.session.status_messages != undefined) {
+    var status_messages = req.session.status_messages;
+  } 
   req.session.status_messages = [];
+
+  // look for unseen matches & add to status message
+  var unseen_matches = match_data.get_unseen_matches_by_user(user_id);
+  if (unseen_matches.length > 0) {
+    var message = "You have " + unseen_matches.length + " new match"
+    if (unseen_matches.length > 1) {
+        message += "es"
+    }
+    /* set as seen */
+    for (var i=0; i<unseen_matches.length; i++) {
+        match_data.set_match_as_seen(unseen_matches[i].id, user_id);
+    }
+    status_messages[status_messages.length] = {
+        "text": message, 
+        "class": "success-message", 
+        "glyphicon": "glyphicon-ok"
+    };
+  }
 
   res.render('matches', 
   {
