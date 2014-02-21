@@ -17,7 +17,7 @@ function initializePage() {
 
 }
 
-$('#search-input').keypress(function() {
+$('#search-input').keyup(function() {
             
       var searchQuery = $(this).val();
       var results = $.get('/get_classes_query', {'query': searchQuery}, populateAutoComplete);
@@ -25,19 +25,25 @@ $('#search-input').keypress(function() {
               
         });
 
-        function populateAutoComplete(result) {
-          var classMatches = [];
-          for (var i = 0; i < result.length; i++) {
-          	console.log(result[i].name);
-          	console.log(classMatches);
-          	classMatches.push(result[i].name);
-          }
-          console.log(classMatches);
-        	$("#search-input").autocomplete({
-                      source: classMatches
-                    });
-            console.log("POPULATING AUTO COMPLETE WITH: "+JSON.stringify(result));
-        }
+function populateAutoComplete(result) {
+  var classMatches = [];
+  for (var i = 0; i < result.length; i++) {
+  	console.log("MATCH: "+result[i].name);
+    var course = {};
+    course.label = result[i].name;
+    course.value = result[i].name;
+  	// console.log(classMatches);
+  	classMatches.push(course);
+  }
+	$("#search-input").autocomplete({
+              source: classMatches,
+              select: function(event, ui) {
+                console.log(ui.item.value+" was selected");
+                window.location.href= '/search?query='+ui.item.value;
+              }
+            });
+    console.log("POPULATING AUTO COMPLETE WITH: "+JSON.stringify(classMatches));
+}
 
           
 

@@ -174,5 +174,9 @@ ul.problem-list li {
     margin: 5px;
 }
 
+.ui-autocomplete {
+z-index: 100;
+}
+
 
 

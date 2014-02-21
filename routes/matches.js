@@ -121,7 +121,7 @@ exports.create_match_request = function(req, res) {
 	// }
 
 //	match_request['match_requests'].push(new_match);
-	res.redirect("/");
+	res.redirect("/matches");
 	return
 };
 

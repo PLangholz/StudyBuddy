@@ -28,9 +28,9 @@
         <h2> Search For Courses</h2><br/>
         <div class="row">
         <div class="col-xs-12">
-        <form class="navbar-form navbar" role="search" method="get" action="/search">
+        <form autocomplete="off" class="navbar-form navbar" role="search" method="get" action="/search">
           <div id="search-bar" class="form-group">
-            <input id="search-input" name="query" type="text" class="form-control" placeholder="Course">
+            <input autocomplete="off" id="search-input" name="query" type="text" class="form-control" placeholder="Course">
           </div>
           <button id="search-button" type="submit" class="btn"><i class="fa fa-search fa-lg"></i>&nbsp;Search</button>
         </form>
@@ -106,9 +106,12 @@
     
 
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="/js/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/studybuddy.js"></script>
+
+    <script>
+    </script>
 
 </body>
 </html>
