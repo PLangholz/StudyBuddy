@@ -13,26 +13,29 @@ $(document).ready(function() {
 	$(".editbtn").click(function () {
 		var known = new Array();
 		var unknown = new Array();
-		var form_string = "<form action='/edit-match-request' method='post' role='form'>";
+		var form_string = "<form action='/edit-match-request' method='post' class='form-inline' role='form'>";
+		var request_id = $(this).attr('id').substr('edit-'.length);
+		form_string += "<input type='hidden' name='request[id]' class='text' value='" + request_id + "'>";
 		$(this).parent(".match_inf").find(".known li").each(function(){
-			form_string += "<input type=\"checkbox\"" + 
-				"name=\"" + $(this).html()+"\"" +
-				"value=\"" + $(this).html()+"\" checked=true"+
-				" class=\"question_box\">" +
-				"<p>"+ $(this).html() + "</p></br>";
+			form_string += "<div class='form-group'><label>"+ $(this).html() + "</label>" +
+				"<input type=\"checkbox\"" + 
+				"name='unknowns[" + $(this).html()+"]'" +
+				"value=\"" + $(this).html()+"\" "+
+				"class=\"question_box\"></div>";
 		});
-			$(this).parent(".match_inf").find(".unknown li").each(function(){
-				form_string += "<input type=\"checkbox\"" + 
-					"name=\"" + $(this).html()+"\"" +
-					"value=\"" + $(this).html()+"\"" +
-					" class=\"question_box\">" +
-					"<p>" +$(this).html() + "</p></br>";
-			});
-			$(this).parent('.match_inf').html(
-				"<p> Check the boxes of the" + 
-				"problems you know</p>" + form_string + "</form>" +
-				"<div class=\"clickable submit\">" +
-				"<p>SUBMIT</p></div>");
+		$(this).parent(".match_inf").find(".unknown li").each(function(){
+			form_string += "<div class='form-group'><label>"+ $(this).html() + "</label>" +
+				"<input type=\"checkbox\"" + 
+				"name='unknowns[" + $(this).html()+"]'" +
+				"value=\"" + $(this).html()+"\" checked=true" +
+				" class=\"question_box\"></div>";
+		});
+		form_string += "<button type='submit' class='btn'>Update Match Request</button></form>"
+		$(this).parent('.match_inf').html(
+			"<p> Check the boxes of the problems you need help on </p>" + form_string);
+
+
+		/*
 			$(".submit").each(function() {
 				$(this).click(function() {
 					var assign_id = $(this).parent(".match_inf").attr('id');
@@ -53,7 +56,7 @@ $(document).ready(function() {
 					
 				});
 			});
-
+		*/
 
 	});
 
