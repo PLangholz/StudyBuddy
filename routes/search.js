@@ -34,6 +34,7 @@ exports.view = function(req, res){
 	// 	matches[i].name = matches[i].name.substring(0, 35);
 	// }
 	console.log(matches);
+
   res.render('search', 
   	{
   		'query' : queryUnsplit,

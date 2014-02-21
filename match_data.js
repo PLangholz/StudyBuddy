@@ -112,11 +112,11 @@ var course_data = require('./course_data.js');
 
 exports.match_is_unseen = function(match, user_id) {
 	if (user_id == match.first_user_id) {
-		if (match.seen_by_first_user == 'unseen') {
+		if (match.seen_by_first_user == 'unseen' || !match.seen_by_first_user) {
 			return true;
 		}
 	} else {
-		if (match.seen_by_second_user == 'unseen') {
+		if (match.seen_by_second_user == 'unseen' || !match.seen_by_second_user) {
 			return true;
 		}
 	}
@@ -195,7 +195,7 @@ exports.annotate_with_other_user_data = function(matches, curr_user_id) {
 
 
 exports.set_match_as_seen = function(match_id, user_id) {
-	var match_object = get_match_by_id(match_id);
+	var match_object = exports.get_match_by_id(match_id);
 	if (match_object.first_user_id == user_id) {
 		match_object.seen_by_first_user = true;
 	} else {
