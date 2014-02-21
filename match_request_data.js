@@ -142,9 +142,7 @@ var course_data = require('./course_data.js');
  exports.set_match_request_to_pending = function(match_request_id) {
  	for (var i = 0; i < data.match_requests.length; i++) {
  		if (data['match_requests'][i].id == match_request_id) {
- 			console.log("setting to pending");
- 			data['match_requests']['pending'] = true;
- 			return;
+ 			data['match_requests'][i]['pending'] = true;
  		}
  	}
  }
@@ -218,6 +216,9 @@ var course_data = require('./course_data.js');
  			continue;
  		var longer = match_request_obj.problems_known;
  		var shorter = all_requests[i].problems_known
+ 		console.log("shorter:" + shorter);
+		console.log(" longer : "+ longer);
+		
  		if (shorter.length > longer.length) {
 			shorter = longer;
 			longer = all_requests[i].problems_known;
@@ -230,8 +231,6 @@ var course_data = require('./course_data.js');
 		// i.e how many do they have not in common
 		
 		overlap = shorter.length - intersection.length;
-		console.log("shorter:" + shorter);
-		console.log(" longer : "+ longer);
 		console.log(" intersection : "+ intersection);
 		if (overlap > greatest_overlap) {
 			greatest_overlap = overlap;

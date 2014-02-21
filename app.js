@@ -59,6 +59,7 @@ app.post('/post-update-match-request', matches.update_request);
 app.post('/post-create-match-request', matches.create_match_request);
 app.post('/delete-match-request', matches.delete_match_request);
 app.post('/delete-match', matches.delete_match);
+app.post('/edit-match-request', matches.edit_match_request);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

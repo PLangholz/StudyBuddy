@@ -23,8 +23,8 @@
         </div>
         <div class="col-xs-4">
             {{#if username}}
-                <div class="logout">
-                    <!-- {{username}} -->&nbsp;&nbsp;<a class="nav-link" href="/logout"><i class="fa fa-sign-out fa-lg nav-icon" alt="Logout"></i></a>
+                <div class="logout"> <div id="logged-in-as">Hi, {{username}}</div>
+                    <a class="nav-link" href="/logout"><i class="fa fa-sign-out fa-lg nav-icon" alt="Logout"></i></a>
                 </div>
             {{/if}}
         </div>

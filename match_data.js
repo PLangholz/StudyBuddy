@@ -110,6 +110,31 @@ var course_data = require('./course_data.js');
  *
  *-----------------------------------------------------*/
 
+exports.match_is_unseen = function(match, user_id) {
+	if (user_id == match.first_user_id) {
+		if (match.seen_by_first_user == 'unseen' || !match.seen_by_first_user) {
+			return true;
+		}
+	} else {
+		if (match.seen_by_second_user == 'unseen' || !match.seen_by_second_user) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
+exports.get_unseen_matches_by_user = function(user_id) {
+	var matches = exports.get_matches_by_user(user_id);
+	var unseen_matches = [];
+	for (var i=0; i<matches.length; i++) {
+		if (exports.match_is_unseen(matches[i], user_id)) {
+			unseen_matches[unseen_matches.length] = matches[i];
+		}
+	}
+	return unseen_matches;
+}
+
 
 
 exports.annotate_with_other_user_data = function(matches, curr_user_id) {
@@ -143,11 +168,13 @@ exports.annotate_with_other_user_data = function(matches, curr_user_id) {
  exports.delete_match = function(match_id, deleting_user_id) {
  	var match = exports.get_match_by_id(match_id);
  	var first_match_request_id = match.first_user_request_id;
- 	var second_match_reqeust_id = match.second_user_request_id;
+ 	var second_match_request_id = match.second_user_request_id;
  	
  	//update both requests to pending again.
  	match_request_interface.set_match_request_to_pending(first_match_request_id);
-	match_request_interface.set_match_request_to_pending(second_match_reqeust_id);
+ 	console.log("peidng: " + first_match_request_id);
+ 	console.log("peidng: " + second_match_request_id);
+	match_request_interface.set_match_request_to_pending(second_match_request_id);
  	// now we find this match object and delete it
  	for (var i = match.id; i >= 0; i--) {
  		if (data['matches'][i].id == match.id) {
@@ -168,7 +195,7 @@ exports.annotate_with_other_user_data = function(matches, curr_user_id) {
 
 
 exports.set_match_as_seen = function(match_id, user_id) {
-	var match_object = get_match_by_id(match_id);
+	var match_object = exports.get_match_by_id(match_id);
 	if (match_object.first_user_id == user_id) {
 		match_object.seen_by_first_user = true;
 	} else {

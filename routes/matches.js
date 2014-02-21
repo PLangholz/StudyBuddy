@@ -4,8 +4,8 @@
 
 /*
 var match_request = require("../match_request.json");
-var courses = require("./courses.json");*/
-var assignments = require("./assignments.json");/*
+var courses = require("./courses.json");
+var assignments = require("./assignments.json");
 var matches = require("../matches.json");
 
 
@@ -31,7 +31,7 @@ function getMatchRequestFromId(id) {
 			return match_list[i];
 	}
 };
-*/
+
 function getAssignmentFromId(id) {
 	var assignment_list = assignments['assignments'];
 	for (var i = 0; i < assignment_list.length; i ++ ) {
@@ -39,7 +39,7 @@ function getAssignmentFromId(id) {
 			return assignment_list[i];
 	}
 };
-/*
+
 function hasBeenMatched(request_id) {
 	var match_list = matches['matches'];
 	for (var i = 0; i < match_list.length; i++) {
@@ -55,6 +55,7 @@ function hasBeenMatched(request_id) {
 var match_request_data = require("../match_request_data.js");
 var match_data = require("../match_data.js");
 var user_data = require("../user_data.js");
+var course_data = require('../course_data.js');
 
 /* Main page for matches */
 exports.view = function(req, res){
@@ -70,15 +71,31 @@ exports.view = function(req, res){
   var matches = match_data.get_matches_by_user(user_id);
   matches = match_data.annotate_with_other_user_data(matches, user_id);
   matches = match_data.annotate_with_course_info(matches);
-    
-  console.log("requests");
-  console.log(requests);
-  console.log("matches");
-  console.log(matches);
 
   // grab status message if there is one and flush
-  var status_messages = req.session.status_messages;
+  var status_messages = [];
+  if (req.session.status_messages != undefined) {
+    var status_messages = req.session.status_messages;
+  } 
   req.session.status_messages = [];
+
+  // look for unseen matches & add to status message
+  var unseen_matches = match_data.get_unseen_matches_by_user(user_id);
+  if (unseen_matches.length > 0) {
+    var message = "You have " + unseen_matches.length + " new match"
+    if (unseen_matches.length > 1) {
+        message += "es"
+    }
+    /* set as seen */
+    for (var i=0; i<unseen_matches.length; i++) {
+        match_data.set_match_as_seen(unseen_matches[i].id, user_id);
+    }
+    status_messages[status_messages.length] = {
+        "text": message, 
+        "class": "success-message", 
+        "glyphicon": "glyphicon-ok"
+    };
+  }
 
   res.render('matches', 
   {
@@ -98,13 +115,14 @@ exports.view = function(req, res){
 
 exports.create_match_request = function(req, res) {
 	var assign_id = req.body['assignment_id'];
-	var assign_obj = getAssignmentFromId(assign_id);
+	var assign_obj = course_data.get_assignment_by_id(assign_id);
 	var known = new Array();
 	var unknown = new Array();
 	var numProblems = assign_obj.problems.length;
+	console.log(req.body);
 	for (var i = 1; i <= numProblems; i++) {
-		if(req.body['checkbox-'+i]) known.push(i);
-		else unknown.push(i);
+		if(req.body['checkbox-'+i]) unknown.push(i);
+		else known.push(i);
 	}
 	var user_id = req.session.curr_user_id;	
 	//var new_match_request_id = get_new_match_request_id();
@@ -162,6 +180,36 @@ exports.delete_match = function(req, res) {
     return; 
 }
 
+exports.edit_match_request = function(req, res) {
+    var match_request_id = req.body.request.id;
+    var request = match_request_data.get_match_request_by_id(match_request_id);
+    var assignment = course_data.get_assignment_by_id(request.assignment_id);
+    var all_problems = assignment.problems;
+    var unknowns = [];
+    for (var i=0; i<req.body.unknowns.length; i++) {
+        var unknown = parseInt(req.body.unknowns[i]);
+        unknowns[unknowns.length] = unknown;
+    }
+    var knowns = [];
+    for (var i=0; i<all_problems.length; i++) {
+        if (unknowns.indexOf(all_problems[i]) == -1) {
+            knowns[knowns.length] = all_problems[i];
+        }
+    }
+    request.problems_unknown = unknowns;
+    request.problems_known = knowns;
+    console.log("this is the new match request");
+    console.log(request);
+    match_request_data.edit_match_request_record(match_request_id, request);
+    
+    // Add a status message about what happened
+    var status_messages = [{"text": "Match request updated.", "class": "success-message", "glyphicon": "glyphicon-ok"}];
+    req.session.status_messages = status_messages;
+
+    // redirect to matches page
+    res.redirect("/matches");
+
+}
 
 
 
