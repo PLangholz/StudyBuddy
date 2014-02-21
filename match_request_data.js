@@ -143,6 +143,7 @@ var course_data = require('./course_data.js');
  	for (var i = 0; i < data.match_requests.length; i++) {
  		if (data['match_requests'][i].id == match_request_id) {
  			data['match_requests'][i]['pending'] = true;
+ 			return;
  		}
  	}
  }
@@ -150,10 +151,21 @@ var course_data = require('./course_data.js');
  exports.edit_match_request_record = function(match_request_id, new_match_request_obj) {
  	//just to be sure
  	new_match_request_obj['id'] = match_request_id;
+ 	var return_var = false;
+ 	var poss_match = exports.possible_match(new_match_request_obj);
+ 	if (poss_match != undefined) {
+ 		return_var = true;
+ 		poss_match['pending'] = false;
+ 		match_object_interface.create_match_obj(poss_match, new_match_request_obj);
+ 		new_match_request_obj['pending'] = false;
+
+ 	} else {
+ 		new_match_request_obj['pending'] = true;
+ 	}
  	for (var i = 0; i < data.match_requests.length; i++) {
  		if (data['match_requests'][i].id == match_request_id) {
  			data['match_requests'][i] = new_match_request_obj;
- 			return;
+ 			return return_var;
  		}
  	}
  }
