@@ -143,11 +143,13 @@ exports.annotate_with_other_user_data = function(matches, curr_user_id) {
  exports.delete_match = function(match_id, deleting_user_id) {
  	var match = exports.get_match_by_id(match_id);
  	var first_match_request_id = match.first_user_request_id;
- 	var second_match_reqeust_id = match.second_user_request_id;
+ 	var second_match_request_id = match.second_user_request_id;
  	
  	//update both requests to pending again.
  	match_request_interface.set_match_request_to_pending(first_match_request_id);
-	match_request_interface.set_match_request_to_pending(second_match_reqeust_id);
+ 	console.log("peidng: " + first_match_request_id);
+ 	console.log("peidng: " + second_match_request_id);
+	match_request_interface.set_match_request_to_pending(second_match_request_id);
  	// now we find this match object and delete it
  	for (var i = match.id; i >= 0; i--) {
  		if (data['matches'][i].id == match.id) {

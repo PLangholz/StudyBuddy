@@ -142,9 +142,7 @@ var course_data = require('./course_data.js');
  exports.set_match_request_to_pending = function(match_request_id) {
  	for (var i = 0; i < data.match_requests.length; i++) {
  		if (data['match_requests'][i].id == match_request_id) {
- 			console.log("setting to pending");
- 			data['match_requests']['pending'] = true;
- 			return;
+ 			data['match_requests'][i]['pending'] = true;
  		}
  	}
  }

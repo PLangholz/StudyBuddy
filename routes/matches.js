@@ -4,8 +4,8 @@
 
 /*
 var match_request = require("../match_request.json");
-var courses = require("./courses.json");*/
-var assignments = require("./assignments.json");/*
+var courses = require("./courses.json");
+var assignments = require("./assignments.json");
 var matches = require("../matches.json");
 
 
@@ -31,7 +31,7 @@ function getMatchRequestFromId(id) {
 			return match_list[i];
 	}
 };
-*/
+
 function getAssignmentFromId(id) {
 	var assignment_list = assignments['assignments'];
 	for (var i = 0; i < assignment_list.length; i ++ ) {
@@ -39,7 +39,7 @@ function getAssignmentFromId(id) {
 			return assignment_list[i];
 	}
 };
-/*
+
 function hasBeenMatched(request_id) {
 	var match_list = matches['matches'];
 	for (var i = 0; i < match_list.length; i++) {
@@ -94,7 +94,7 @@ exports.view = function(req, res){
 
 exports.create_match_request = function(req, res) {
 	var assign_id = req.body['assignment_id'];
-	var assign_obj = getAssignmentFromId(assign_id);
+	var assign_obj = course_data.get_assignment_by_id(assign_id);
 	var known = new Array();
 	var unknown = new Array();
 	var numProblems = assign_obj.problems.length;
