@@ -218,6 +218,9 @@ var course_data = require('./course_data.js');
  			continue;
  		var longer = match_request_obj.problems_known;
  		var shorter = all_requests[i].problems_known
+ 		console.log("shorter:" + shorter);
+		console.log(" longer : "+ longer);
+		
  		if (shorter.length > longer.length) {
 			shorter = longer;
 			longer = all_requests[i].problems_known;
@@ -230,8 +233,6 @@ var course_data = require('./course_data.js');
 		// i.e how many do they have not in common
 		
 		overlap = shorter.length - intersection.length;
-		console.log("shorter:" + shorter);
-		console.log(" longer : "+ longer);
 		console.log(" intersection : "+ intersection);
 		if (overlap > greatest_overlap) {
 			greatest_overlap = overlap;

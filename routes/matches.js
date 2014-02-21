@@ -102,9 +102,10 @@ exports.create_match_request = function(req, res) {
 	var known = new Array();
 	var unknown = new Array();
 	var numProblems = assign_obj.problems.length;
+	console.log(req.body);
 	for (var i = 1; i <= numProblems; i++) {
-		if(req.body['checkbox-'+i]) known.push(i);
-		else unknown.push(i);
+		if(req.body['checkbox-'+i]) unknown.push(i);
+		else known.push(i);
 	}
 	var user_id = req.session.curr_user_id;	
 	//var new_match_request_id = get_new_match_request_id();
