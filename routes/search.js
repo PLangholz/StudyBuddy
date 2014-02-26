@@ -17,9 +17,9 @@ exports.view = function(req, res){
 	var matches = courseData;
 	if (queryUnsplit) {
 		matches = courseData.courses.filter(function(course){
-			var contString = course.name.split(' ').join('');
+			var contString = course.full_name.split(' ').join('');
 			// console.log("CONT STRING: "+contString);
-			// console.log("QUERY: "+query);
+			// console.log("QUERY: "+queryUnsplit);
 			var querySplit = queryUnsplit.split(' ').join('');
 			console.log("COMPARING "+querySplit.toLowerCase()+" TO "+contString.toLowerCase());
 			return contString.toLowerCase().indexOf(querySplit.toLowerCase()) >= 0;
@@ -30,9 +30,9 @@ exports.view = function(req, res){
 			return course.popular == "true";
 		});
 	}
-	for (var i = 0; i < matches.length; i++) {
-		matches[i].name = matches[i].name.substring(0, 35);
-	}
+	// for (var i = 0; i < matches.length; i++) {
+	// 	matches[i].name = matches[i].name.substring(0, 35);
+	// }
   res.render('search', 
   	{
   		'query' : queryUnsplit,

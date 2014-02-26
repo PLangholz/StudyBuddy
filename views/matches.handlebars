@@ -30,46 +30,45 @@
 		     			        <div class="accordion-heading">
 	                				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{game.id}}" href="#collapse{{id}}"> 
     	                    			<h4 class="class-name">
-    	                        			{{course.name}} : {{assignment.name}}
-    	                        			<span class="arrow"><i style="float: right;" class="fa fa-chevron-down fa-xs"></i></span>
+    	                        			{{course.code}} : {{assignment.name}}
+    	                        			<i style="float: right;" class="fa fa-chevron-down fa-xs match-item"></i>
     	                   				 </h4>
                 					</a>
                 					<div id="collapse{{id}}" class="accordion-body collapse">
-                        			<div class="details-left col-md-12 match_inf" id="{{id}}">
-			                           	
-                                        <div class="row">
-                                            <div class="unknown col-xs-8">
-                                                <div class="problems-label">You need help on problems</div>
+                        			<div class="details-left match_inf" id="{{id}}">
+			                     
+                                        <div class="toggler row">
+                                            <div id="effect{{id}}" class="unknown col-xs-12 ui-widget-content ui-corner-all">
+                                                <!-- <div class="problems-label">You need help on problems</div> -->
                                                 <ul class="problem-list">
                                                     {{#each problems_unknown}}
-                                                        <li class="img-rounded">{{this}}</li>
+                                                        <li class="img-rounded unknown"><i style="float: left;" class="fa fa-check-circle-o fa-xs matches-icon"></i>Problem {{this}}</li>
                                                     {{/each}}
-                                                </ul>
-                                            </div>
-                                        </div>                                        
-                                        <div class="row">
-                                            <div class="known col-xs-8">
-                                                <div class="problems-label">You know problems</div>
-                                                <ul class="problem-list">
+                                                <!-- </ul> -->
+                                            <!-- </div>
+                            
+                                            <div class="known col-xs-6"> -->
+                                                <!-- <div class="problems-label">You know problems</div> -->
+                                                <!-- <ul class="problem-list"> -->
                                                     {{#each problems_known}}
-                                                        <li class="img-rounded">{{this}}</li>
+                                                        <li class="img-rounded known"><i style="float: left;" class="fa fa-plus fa-xs matches-icon"></i>Problem {{this}}</li>
                                                     {{/each}}
                                                 </ul>
+
+                                                <button class="btn editbtn ui-state-default ui-corner-all" id="edit-{{id}}">
+                                                    <i class="fa fa-pencil fa-med"></i> 
+                                                    Edit
+                                                </button> 
+                                                <form action="/delete-match-request" method="post" role="form">
+                                                    <input type="hidden" name="request[id]" class="text" value="{{id}}">
+                                                    <button type="submit" class="btn deletebtn" id="delete-{{id}}">
+                                                        <i class="fa fa-times fa-xs"></i> 
+                                                        Delete
+                                                    </button>
+                                                </form>
+
                                             </div>
                                         </div>
-
-                                        <button class="btn editbtn" id="edit-{{id}}">
-                                            <i class="icon-pencil"></i> 
-                                            Edit
-                                        </button> 
-
-                                        <form action="/delete-match-request" method="post" role="form">
-                                            <input type="hidden" name="request[id]" class="text" value="{{id}}">
-                                            <button type="submit" class="btn" id="delete-{{id}}">
-                                                <i class="icon-remove"></i> 
-                                                Delete
-                                            </button>
-                                        </form>
 
                         			</div>
                     			</div>
@@ -78,7 +77,10 @@
             		</div>
        			 </div>
             </div>
-		{{/each}}
+		
+        {{else}}
+        <h4 class="results-header">No pending matches.</h4>
+        {{/each}}
 	</div>
 
 
@@ -93,10 +95,10 @@
             				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{game.id}}" href="#collapse{{id}}m"> 
                 			<h4 class="class-name">
                     			Match: {{other_user.first_name}} {{other_user.last_name}}
-                    			<span class="arrow"><i style="float: right;" class="fa fa-chevron-down fa-xs"></i></span>
+                    			<i style="float: right;" class="fa fa-chevron-down fa-xs"></i>
                				 </h4>
                              <h4 class="class-name">
-                                Assignment: {{course.name}}, {{assignment.name}}
+                                Assignment: {{course.code}}, {{assignment.name}}
                              </h4>
         					</a>
         					<div id="collapse{{id}}m" class="accordion-body collapse">
@@ -109,7 +111,7 @@
                                     <input type="hidden" name="match[id]" class="text" value="{{id}}">
                                     <button type="submit" class="btn" id="delete-{{id}}">
                                         <i class="icon-remove"></i> 
-                                        Reject or clear match
+                                        Reject/Clear Match
                                     </button>
                                 </form>
             			</div>
@@ -118,7 +120,9 @@
         		</div>
    			 </div>
         </div>
-		{{/each}}
+        {{else}}
+        <h4 class="results-header">No recent matches.</h4>
+        {{/each}}
 	</div>
 </div>
 
@@ -128,6 +132,19 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="/js/matches.js"></script>
     <script src="/js/studybuddy.js"></script>
+    <script src="/js/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
+    <script>
+    $('.accordion-toggle').click(function(e) {
+        if ($(this).find('i.match-item').hasClass('fa-chevron-down')) {
+            $(this).find('i.match-item').removeClass('fa-chevron-down');
+            $(this).find('i.match-item').addClass('fa-chevron-up');
+        }
+        else {
+            $(this).find('i.match-item').removeClass('fa-chevron-up');
+            $(this).find('i.match-item').addClass('fa-chevron-down');
+        }
+    });
+    </script>
 
 </body>
 

@@ -30,8 +30,8 @@ function populateAutoComplete(result) {
   for (var i = 0; i < result.length; i++) {
   	console.log("MATCH: "+result[i].name);
     var course = {};
-    course.label = result[i].name;
-    course.value = result[i].name;
+    course.label = result[i].full_name;
+    course.value = result[i].full_name;
   	// console.log(classMatches);
   	classMatches.push(course);
   }
