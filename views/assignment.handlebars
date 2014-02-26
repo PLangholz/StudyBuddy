@@ -72,7 +72,7 @@
     <script>
         $(document).ready(function() {   
             console.log("ready");        
-            $('.result-problems').bind('touchstart', function(e) {
+            $('.result-problems').click(function(e) {
                 $(this).toggleClass('unselected', 'selected');
                 var inputProblem = $("input[name='checkbox-"+this.id+"']");
                 if (inputProblem.prop('checked')) {
