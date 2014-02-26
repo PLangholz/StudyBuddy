@@ -24,3 +24,18 @@ h2 {
     margin: 0px auto;
 }
 
+.btn.login {
+	color: white;
+	background-color: #2a6496;
+	width: 100%;
+}
+
+p.signup-text {
+	font-size: 12px;
+	text-align: center;
+}
+
+input.form-control {
+	box-shadow: none;
+}
+

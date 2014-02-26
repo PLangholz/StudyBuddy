@@ -30,10 +30,9 @@ exports.view = function(req, res){
 			return course.popular == "true";
 		});
 	}
-	// for (var i = 0; i < matches.length; i++) {
-	// 	console.log("changing "+matches[i].name);
-	// 	matches[i].name = matches[i].name.substring(0, 35);
-	// }
+	for (var i = 0; i < matches.length; i++) {
+		matches[i].name = matches[i].name.substring(0, 35);
+	}
   res.render('search', 
   	{
   		'query' : queryUnsplit,
@@ -44,17 +43,5 @@ exports.view = function(req, res){
 };
 
 exports.get_classes_from_query = function(req, res) {
-	var query = req.query.query;
-	var matches = courseData.courses;
-	// if (query) {
-	// 		var queryToken = query.split(' ').join('').toLowerCase();
-	// 		matches = courseData.courses.filter(function(course) {
-	// 		var courseNameToken = course.name.split(' ').join('').toLowerCase();
-	// 		console.log("COMPARING QUERY TOKEN "+queryToken+" TO COURSE NAME TOKEN "+courseNameToken);		
-
-	// 		return courseNameToken.indexOf(queryToken) >= 0;
-	// 	});
-	// }
-	// console.log(matches);
-	res.json(matches);
+	res.json(courseData.courses);
 }

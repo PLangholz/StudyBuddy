@@ -3,7 +3,7 @@
 		{
 			"id": 0,
 			"course_id" : 0,
-			"course_name" : "CS 103: Mathematical Foundations Computing", 
+			"course_name" : "CS 103: Mathematical Foundations of Computing", 
 			"name" : "Assignment 1",
 			"problems": [1,2,3,4,5,6]			
 		},

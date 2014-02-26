@@ -1,10 +1,24 @@
+@font-face
+{
+font-family: ProximaNova-Light;
+src: url('/fonts/ProximaNova-Light.otf');
+}
+
+html, body {
+    font-family: ProximaNova-Light;
+}
+
 #main-content {
     background-color:  whitesmoke;
     padding: 15px 10px 15px 10px;
     min-height: 340px;
-    font-family: 'Helvetica Neue';
+    font-family: ProximaNova-Light, "Helvetica-Neue";
     font-weight: 400;
     font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: ProximaNova-Light;
 }
 
 .status-message {
@@ -81,31 +95,31 @@ div.result {
     border-bottom: 1px solid white;
     background-color: whitesmoke;
     font-size: 10px;
+    /*height: 40px;*/
 }
 
 div.result-problems {
-    border-bottom: 1px solid whitesmoke;
-    background-color: #8C1515;
-    font-size: 12px;
+    border-bottom: 2px solid whitesmoke;
+    background-color: green;
     color: white;
-    font-weight: lighter;
     cursor: pointer;
 }
 
 div.unselected {
-    background-color: green;
+    background-color: gray;
 /*    -webkit-transition-timing-function: ease-in-out;
     transition-timing-function: ease-in-out;*/
 }
 
 div.selected {
-    background-color: #8C1515;
+    background-color: green;
 /*    -webkit-transition-timing-function: ease-in-out;
     transition-timing-function: ease-in-out;*/
 }
 
 div.result h4 {
     font-size: 14px;
+    line-height: 20px;
 }
 
 h2 {
@@ -115,8 +129,9 @@ h2 {
 
 h2.problem-name {
     font-size: 20px;
-    display: inline-block;
-    line-height: 10px;
+    display: inline;
+    line-height: 45px;
+    margin-left: -15px;
 }
 
 button#submit-problems-button {
@@ -126,6 +141,8 @@ button#submit-problems-button {
     color: white;
     font-weight: 300;
     margin-bottom: 10px;
+    height: 50px;
+    font-size: 16px;
 }
 
 table#home-prof-info td {
@@ -139,6 +156,7 @@ button#update-prof {
     color: white;
     background-color: #2a6496;
     font-weight: 400;
+    height: 40px;
 }
 
 div.description {
@@ -150,20 +168,22 @@ div.details-left {
 }
 
 h4.assignment-name {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 h4.assignment_header {
-    font-weight: 200;
+    font-size: 14px;
+
 }
 
 h2.problems-header {
-    font-size: 24px;
-    font-weight: 800;
+    font-size: 20px;
+    font-weight: 300;
+    padding: 0;
 }
 
 .problems-label {
-    display: inline;
+    display: inline-block;
     float: left;
 }
 
@@ -185,8 +205,40 @@ ul.problem-list li {
 #logged-in-as {
     display: inline;
     float: left;
-    padding: 0px 5px;
+    padding: 0px 0px;
+    font-size: 11px;
+    margin-right: 5px;
+    line-height: 23px;
+}
+
+div.problem-option {
+    height: 40px;
+}
+
+.problem-status-complete, .problem-status-incomplete {
+    float: left;
+    display: inline;
+    line-height: 40px;
+    margin-top: 3px;
+}
+
+.ui-menu .ui-menu-item a {
+    font-family: ProximaNova-Light;
+    font-size: 11px;
+}
+
+h4.results-header {
     font-size: 13px;
 }
 
+input.form-control {
+    box-shadow: none;
+}
 
+label {
+    font-size: 16px;
+}
+
+i.arrow {
+    line-height: 18px;
+}

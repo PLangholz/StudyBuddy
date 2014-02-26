@@ -1,11 +1,14 @@
+@font-face
+{
+font-family: Avenir-Light;
+src: url('/fonts/ProximaNova-Light.otf');
+}
+
 
 #header .home_button {
     float: left;
 }
 
-#header .title {
-    margin:auto;
-}
 
 #header .logout {
     display: inline;
@@ -17,7 +20,7 @@
 #header {
     background-color: #2a6496;
     padding: 10px 10px;
-    font-family: 'Helvetica Neue';
+    font-family: 'Avenir-Light';
     /*font-weight: lighter;*/
     font-size: 16px;
     color: whitesmoke;
@@ -31,12 +34,18 @@
     float: left;
 }
 
+div.title {
+    padding-left: 9px;
+    float: left;
+}
+
+
 .action-thumbnail {
     text-align: center;
 }
 
 .nav-icon {
-    padding-right: 10px;
+    padding-right: 0px;
 }
 
 

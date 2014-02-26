@@ -45,7 +45,7 @@ exports.view = function(req, res) {
   		'assignment' : assignment,
   		'course_name' : class_obj.name,
   		'course_id' : class_obj.id,
-        'username': curr_user.first_name
+       'username': curr_user.first_name
   	});
 
 };

@@ -24,19 +24,18 @@
     {{> header}}
 
     <div class="container">
-        <h2>Update profile</h2><br />
-
+        <h2>Update Profile</h2>
         <form class="form-horizontal" role="form" method="post" action="/post-update-profile">
           <input type="hidden" name="user[id]" class="text" value="{{user.id}}">
           <div class="form-group">
-            <label for="first_name" class="col-sm-2 control-label">First name</label>
+            <label for="first_name" class="col-sm-2 control-label">First Name</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" name="user[first_name]" id="first_name" placeholder="First name" value="{{user.first_name}}">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="last_name" class="col-sm-2 control-label">Last name</label>
+            <label for="last_name" class="col-sm-2 control-label">Last Name</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" name="user[last_name]" id="last_name" placeholder="Last name" value="{{user.last_name}}">
             </div>
@@ -50,24 +49,21 @@
           <div class="form-group">
             <label for="email" class="col-sm-2 control-label">Phone Number</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="user[phone_number]" id="email"  value="{{user.phone_number}}" placeholder="(123)-456-7891">
+              <input type="text" class="form-control" name="user[phone_number]" id="email"  value="{{user.phone_number}}" placeholder="(123) 456-7891">
             </div>
           </div>
           <div class="form-group">
-            <label for="description" class="col-sm-2 control-label">Description</label>
+            <label for="description" class="col-sm-2 control-label">Headline</label>
             <div class="col-sm-10">
               <input type="description" class="form-control" name="user[description]" id="description" value="{{user.description}}" placeholder="Anything you want to say!">
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-default">Update Profile</button>
+              <button id="update-prof" type="submit" class="btn update-prof"><i class="fa fa-check fa-med nav-icon" alt="Update Profile"></i>&nbsp;Update Profile</button>
             </div>
           </div>
         </form>
-
-        <a href="/matches">See my existing matches</a><br />
-        <a href="/search">Search for new matches</a><br />
     </div>
 
     <script src="https://code.jquery.com/jquery.js"></script>

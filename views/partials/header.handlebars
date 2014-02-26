@@ -5,25 +5,19 @@
             {{#if username}}
 
                     <div class="icon">
-                        <a class="nav-link" href="/"><i class="fa fa-home fa-med nav-icon" alt="Home"></i></a>
+                        <a class="nav-link" href="/"><i class="fa fa-home fa-lg nav-icon" alt="Home"></i></a>
                     </div>
                 
-            <div class="icon">
-                <a class="nav-link" href="/search"><i class="fa fa-search fa-med nav-icon" alt="Search"></i></a>
-            </div>
-            <div class="icon">
-                <a class="nav-link" href="/matches"><i class="fa fa-users fa-med nav-icon" alt="Matches"></i></a>
-            </div>
             {{/if}}
         </div>
-        <div class="col-xs-4">
-            <div class="title">
-            	<span id="header-name">StuddyBuddy</span>	
+        <div class="col-xs-4 title">
+            <!-- <div class="title"> -->
+            	<!-- <a class="nav-link" href="/"> --><div id="header-name">StuddyBuddy<!-- </div> --><!-- </a> -->
             </div>
         </div>
         <div class="col-xs-4">
             {{#if username}}
-                <div class="logout"> <div id="logged-in-as">Hi, {{username}}</div>
+                <div class="logout"> <div id="logged-in-as">{{username}}</div>
                     <a class="nav-link" href="/logout"><i class="fa fa-sign-out fa-lg nav-icon" alt="Logout"></i></a>
                 </div>
             {{/if}}

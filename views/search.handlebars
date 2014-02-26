@@ -25,7 +25,8 @@
     {{> header}}
 
     <div class="container">
-        <h2> Search For Courses</h2><br/>
+        <h2> Search For Courses</h2>
+        <p style="text-align: center;">Search for the course you need help with!</p>
         <div class="row">
         <div class="col-xs-12">
         <form autocomplete="off" class="navbar-form navbar" role="search" method="get" action="/search">
@@ -39,7 +40,7 @@
 
     {{#if query.length}}    
     <div id="results">
-        <h4>Results for "<strong>{{query}}</strong>"</h4>
+        <h4 class="results-header">Results for "<b>{{query}}</b>":</h4>
         {{#each matches}}
         <div class="result row">
             <div class="col-xs-12">
@@ -49,7 +50,7 @@
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{game.id}}" href="#collapse{{id}}"> 
                     <h4 class="class-name">
                         {{name}}...
-                        <span class="arrow"><i style="float: right;" class="fa fa-chevron-down fa-xs"></i></span>
+                        <i style="float: right;" class="fa fa-chevron-down fa-xs arrow"></i>
                     </h4>
                 </a>
                 <div id="collapse{{id}}" class="accordion-body collapse">
@@ -80,7 +81,7 @@
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{game.id}}" href="#collapse{{id}}"> 
                     <h4 class="class-name">
                         {{name}}...
-                        <span class="arrow"><i style="float: right;" class="fa fa-chevron-down fa-xs"></i></span>
+                        <i style="float: right;" class="fa fa-chevron-down fa-xs arrow"></i>
                     </h4>
                 </a>
                 <div id="collapse{{id}}" class="accordion-body collapse">
@@ -111,6 +112,18 @@
     <script src="/js/studybuddy.js"></script>
 
     <script>
+    $('.accordion').click(function(e) {
+        if ($(this).find('i').hasClass('fa-chevron-down')) {
+            $(this).find('i').removeClass('fa-chevron-down');
+            $(this).find('i').addClass('fa-chevron-up');
+        }
+        else {
+            $(this).find('i').removeClass('fa-chevron-up');
+            $(this).find('i').addClass('fa-chevron-down');
+        }
+        
+
+    });
     </script>
 
 </body>

@@ -24,7 +24,7 @@
     {{> header}}
 
     <div class="container">
-        <h2 class="problems-header">Select Completed Problems</h2>
+        <h2 class="problems-header">Select Uncompleted Problems</h2>
         <br/>
     
     <div id="results">
@@ -38,6 +38,7 @@
             <div id="{{this}}" class="result-problems row unselected">
                 <div class="col-xs-12">
                     <div class="problem-option">
+                        <i class="fa fa-plus-square-o fa-lg nav-icon problem-status-complete" alt="Problem Completed"></i>
                         <h2 class="problem-name">Problem {{this}}</h2>
                         <input style="opacity: 0; position: absolute;" 
                         checked="checked" type="checkbox" name="checkbox-{{this}}"></input>
@@ -66,19 +67,29 @@
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.mobile-1.4.1.js"></script>
+    <!--<script src="/js/jquery.mobile-1.4.1.js"></script>-->
 
     <script>
         $(document).ready(function() {   
             console.log("ready");        
-            $('.result-problems').on('tap', function(e) {
+            $('.result-problems').click(function(e) {
                 $(this).toggleClass('unselected', 'selected');
                 var inputProblem = $("input[name='checkbox-"+this.id+"']");
                 if (inputProblem.prop('checked')) {
                     inputProblem.prop('checked', false);
+                    $(this).find('i').toggleClass('problem-status-incomplete');
+                    $(this).find('i').removeClass('fa-plus-square-o');
+                    $(this).find('i').addClass('fa-check-square-o');
+
+                    console.log($(this).find('i'));
+
                 }
                 else {
                     inputProblem.prop('checked', true);
+                    $(this).find('i').toggleClass('problem-status-incomplete');
+                    $(this).find('i').removeClass('fa-check-square-o');
+                    $(this).find('i').addClass('fa-plus-square-o');
+                    console.log($(this).children('i'));
                 }
                 e.stopPropagation();
             });
