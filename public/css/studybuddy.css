@@ -272,6 +272,7 @@ input.form-control {
     box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow;
+    -webkit-appearance: none;
 }
 
 label {
