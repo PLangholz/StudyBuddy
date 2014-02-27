@@ -40,9 +40,12 @@
                                         <div class="toggler row">
                                             <div id="effect{{id}}" class="unknown col-xs-12 ui-widget-content ui-corner-all">
                                                 <!-- <div class="problems-label">You need help on problems</div> -->
-                                                <ul class="problem-list">
+                                                <ul class="problem-list assignment-{{id}}">
+                                                    <p style="text-align: center; margin-left: -20px; color: #2a6496;">Needed Problems</p>
                                                     {{#each problems_unknown}}
-                                                        <li class="img-rounded unknown"><i style="float: left;" class="fa fa-check-circle-o fa-xs matches-icon"></i>Problem {{this}}</li>
+                                                        <li class="img-rounded unknown {{this}}"><i style="float: left;" class="fa fa-check-circle-o fa-xs matches-icon"></i>Problem {{this}}</li>
+                                                        <input style="opacity: 0; position: absolute;" 
+                                                            checked="checked" type="checkbox" name="checkbox-{{this}} assignment-{{../id}}"></input>
                                                     {{/each}}
                                                 <!-- </ul> -->
                                             <!-- </div>
@@ -50,8 +53,12 @@
                                             <div class="known col-xs-6"> -->
                                                 <!-- <div class="problems-label">You know problems</div> -->
                                                 <!-- <ul class="problem-list"> -->
+                                                <br/>
+                                                <p style="text-align: center; margin-left: -20px; color: #2a6496;">Completed Problems</p>
                                                     {{#each problems_known}}
-                                                        <li class="img-rounded known"><i style="float: left;" class="fa fa-plus fa-xs matches-icon"></i>Problem {{this}}</li>
+                                                        <li class="img-rounded known {{this}}"><i style="float: left;" class="fa fa-plus fa-xs matches-icon"></i>Problem {{this}}</li>
+                                                        <input style="opacity: 0; position: absolute;" 
+                                                        checked="unchecked" type="checkbox" name="checkbox-{{this}} assignment-{{../id}}"></input>
                                                     {{/each}}
                                                 </ul>
 

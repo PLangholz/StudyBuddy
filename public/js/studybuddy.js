@@ -26,8 +26,8 @@ $('#search-input').keyup(function() {
       var searchQuery = $(this).val();
       var results = $.get('/get_classes_query', {'query': searchQuery}, populateAutoComplete);
 
-              
-        });
+         
+  });
 
 function populateAutoComplete(result) {
   var classMatches = [];

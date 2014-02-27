@@ -41,6 +41,8 @@ h1, h2, h3, h4, h5, h6 {
 
 a.thumbnail {
     box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow;
 }
 
 .action-thumbnail {
@@ -197,6 +199,7 @@ ul.problem-list {
     list-style-type: none;
     margin: 5px 0px 0px 0px;
     float: left;
+    width: 100%;
 }
 
 div#effect {
@@ -204,14 +207,16 @@ div#effect {
 }
 
 ul.problem-list li {
-    float: left;
+    /*float: left;*/
     padding: 10px;
     margin: 5px;
-    margin-left: none;
+    margin-left: -20px;
     background-color: whitesmoke;
-    width: 200px;
+    width: 100%;
     font-size: 16px;
     text-align: center;
+    cursor: pointer;
+
 }
 
 .matches-icon {
@@ -265,6 +270,8 @@ h4.results-header {
 
 input.form-control {
     box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow;
 }
 
 label {

@@ -37,5 +37,7 @@ p.signup-text {
 
 input.form-control {
 	box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow;
 }
 

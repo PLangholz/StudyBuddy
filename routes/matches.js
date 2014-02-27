@@ -2,7 +2,6 @@
 /***************************************************************/
 /* Are these functions still necessary? */
 
-/*
 var match_request = require("../match_request.json");
 var courses = require("./courses.json");
 var assignments = require("./assignments.json");
@@ -23,6 +22,7 @@ function getClassFromId(id) {
 	}
 
 };
+
 
 function getMatchRequestFromId(id) {
 	var match_list = match_request['match_requests'];
@@ -49,8 +49,7 @@ function hasBeenMatched(request_id) {
 	}
 	return false;
 };
-*/
-/***************************************************************/
+
 
 var match_request_data = require("../match_request_data.js");
 var match_data = require("../match_data.js");
@@ -143,7 +142,10 @@ exports.update_request = function(req, res) {
 	var match_request = getMatchRequestFromId(req.body.assign_id);
 	match_request['problems_known'] = req.body.known;
 	match_request['problems_unknown'] = req.body.unknown;
-	res.json(match_request);
+	// res.json(match_request);
+  console.log("HELLO THIS IS NOT WORKING");
+  res.redirect("/search");
+  return;
 
 };
 
@@ -158,7 +160,7 @@ exports.delete_match_request = function(req, res) {
     req.session.status_messages = status_messages;
 
     // redirect to matches page
-    res.redirect("/matches");
+    res.redirect("/search");
     return; 
 }
 
@@ -177,19 +179,20 @@ exports.delete_match = function(req, res) {
 }
 
 exports.edit_match_request = function(req, res) {
+    console.log("EDITING MATCH REQUEST IN CONTROLLER");
     var match_request_id = req.body.request.id;
     var request = match_request_data.get_match_request_by_id(match_request_id);
     var assignment = course_data.get_assignment_by_id(request.assignment_id);
     var all_problems = assignment.problems;
-    var unknowns = [];
+    var unknowns = new Array();
     for (var i=0; i<req.body.unknowns.length; i++) {
         var unknown = parseInt(req.body.unknowns[i]);
-        unknowns[unknowns.length] = unknown;
+        unknowns.push(unknown);
     }
-    var knowns = [];
+    var knowns = new Array();
     for (var i=0; i<all_problems.length; i++) {
         if (unknowns.indexOf(all_problems[i]) == -1) {
-            knowns[knowns.length] = all_problems[i];
+            knowns.push(all_problems[i]);
         }
     }
     request.problems_unknown = unknowns;
@@ -203,7 +206,9 @@ exports.edit_match_request = function(req, res) {
     req.session.status_messages = status_messages;
 
     // redirect to matches page
+    console.log("redirecting");
     res.redirect("/matches");
+    return;
 
 }
 
