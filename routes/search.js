@@ -33,12 +33,16 @@ exports.view = function(req, res){
 	// for (var i = 0; i < matches.length; i++) {
 	// 	matches[i].name = matches[i].name.substring(0, 35);
 	// }
-  res.render('search', 
-  	{
-  		'query' : queryUnsplit,
-  		'title' : 'Search',
-  		'matches' : matches,
-      'username': req.session.username
+    console.log("user: ");
+    console.log(curr_user);
+    console.log("username: " + req.session.username);
+
+    res.render('search', 
+    	{
+    		'query' : queryUnsplit,
+    		'title' : 'Search',
+    		'matches' : matches,
+            'username': req.session.username
   	});
 };
 

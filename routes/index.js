@@ -15,7 +15,8 @@ exports.view = function(req, res, curr_user){
   }
 
   var curr_user = user_data.get_user_by_id(req.session.curr_user_id)
-
+  req.session.username = curr_user.first_name;
+  
   // grab status message if there is one and flush
   var status_messages = [];
   if (req.session.status_messages != undefined) {
@@ -47,7 +48,7 @@ exports.view = function(req, res, curr_user){
   		'title': 'StuddyBuddy',
   		'curr_user': curr_user,
       'status_messages': status_messages,
-      'username': curr_user.first_name
+      'username': req.session.username
   	});
 
 };
