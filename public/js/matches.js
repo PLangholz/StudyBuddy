@@ -89,7 +89,7 @@ $(".editbtn").click(function () {
         }, 1000 );
 
         editState = false;
-        $('li.img-rounded').click(function(e) {
+        $('ul.assignment-'+assign_id+' li.img-rounded').click(function(e) {
         	var problemId = parseInt(this.className.match(/\d+/));
         	console.log(problemId);
         		var input = $("input[name='checkbox-"+problemId+" assignment-"+assign_id+"']");
