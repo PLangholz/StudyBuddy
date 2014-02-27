@@ -13,7 +13,11 @@ function initializePage() {
     // Get rid of status messages after a few seconds
     setTimeout(function(){
         $('.status-message').slideUp();
-    }, 1000);
+    }, 50000);
+
+    $('.status-message .glyphicon-remove').click(function() {
+      $('.status-message').slideUp();
+    })
 
 }
 

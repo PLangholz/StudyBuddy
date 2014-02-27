@@ -153,6 +153,7 @@ var course_data = require('./course_data.js');
  	new_match_request_obj['id'] = match_request_id;
  	var return_var = false;
  	var poss_match = exports.possible_match(new_match_request_obj);
+ 	
  	if (poss_match != undefined) {
  		return_var = true;
  		poss_match['pending'] = false;
@@ -268,15 +269,18 @@ var course_data = require('./course_data.js');
  	new_match_request_obj['problems_unknown'] = problems_unknown;
  	
  	var poss_match = exports.possible_match(new_match_request_obj);
+ 	var is_matched = false;
  	if (poss_match != undefined) {
  		poss_match['pending'] = false;
  		match_object_interface.create_match_obj(poss_match, new_match_request_obj);
  		new_match_request_obj['pending'] = false;
+ 		is_matched = true;
 
  	} else {
  		new_match_request_obj['pending'] = true;
  	}
  	data['match_requests'].push(new_match_request_obj);
+ 	return is_matched;
  }
 
 

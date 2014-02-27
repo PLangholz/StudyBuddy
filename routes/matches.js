@@ -126,19 +126,15 @@ exports.create_match_request = function(req, res) {
 	}
 	var user_id = req.session.curr_user_id;	
 	//var new_match_request_id = get_new_match_request_id();
-	match_request_data.submit_match_request(
+	var match_made = match_request_data.submit_match_request(
 		user_id, assign_id, assign_obj.course_id, known, unknown);
-	// var new_match = 
-	// {
-		
-	// 	'user_id' : user_id,
-	// 	'assignment_id' : assign_id,
-	// 	'course_id' : assign_obj.course_id,
-	// 	'problems_known' : known,
-	// 	'problems_unknown' : unknown
-	// }
+  if (!match_made) {
+    var status_messages = [{"text": "Request Submitted! Please check back periodically to see if you have been matched.    <span class=\"glyphicon glyphicon-remove\"></span> ", "class": "success-message", "glyphicon": "glyphicon-ok"}];
+    req.session.status_messages = status_messages;
+  
+  }
+  
 
-//	match_request['match_requests'].push(new_match);
 	res.redirect("/matches");
 	return
 };
@@ -172,7 +168,7 @@ exports.delete_match = function(req, res) {
     match_data.delete_match(match_id, req.session.curr_user_id);
 
     // Add a status message about what happened
-    var status_messages = [{"text": "Pending match request deleted.", "class": "success-message", "glyphicon": "glyphicon-ok"}];
+    var status_messages = [{"text": "Match deleted! We are looking for a new match for you, please check back periodically.    <span class=\"glyphicon glyphicon-remove\"></span> ", "class": "success-message", "glyphicon": "glyphicon-ok"}];
     req.session.status_messages = status_messages;
 
     // redirect to matches page
