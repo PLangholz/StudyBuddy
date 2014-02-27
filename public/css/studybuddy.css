@@ -281,6 +281,7 @@ i.arrow {
     color: white;
     margin-bottom: 5px;
     margin-top: 10px;
+    height: 40px;
 }
 
 .deletebtn {
@@ -288,4 +289,5 @@ i.arrow {
     background-color: #8C1515;
     color: white;
     margin-bottom: 5px;
+    height: 40px;
 }
