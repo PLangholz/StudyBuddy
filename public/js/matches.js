@@ -126,16 +126,13 @@ $(".editbtn").click(function () {
           color: "#fff"
         }, 1000 );
         console.log("ABOUT TO INIT CLICK");
-        initClick(assign_id);
+        saveUpdatedRequest(assign_id);
 
         //save shit and refresh page
       }
     });
 
-function initClick(assign_id) {
-	console.log("IN INIT CLICK FOR "+assign_id);
-			// var known = new Array();
-			// var unknown = new Array();
+function saveUpdatedRequest(assign_id) {
 			// var form_string = "<form>";
 			// $(this).parent(".match_inf").find(".known li").each(function(){
 			// 	form_string += "<input type=\"checkbox\"" + 
@@ -176,7 +173,7 @@ function initClick(assign_id) {
 						'assign_id' : assign_id,
 						'known' : known,
 						'unknown' : unknown
-					});
+					}, updateRequest);
 
 					
 	// 			});
@@ -186,27 +183,28 @@ function initClick(assign_id) {
 
 };
 
-// function updateRequest(data) {
-// 	var html_string = "<p> You know:</p>" +
-// 						"<ul class=\"known\">";
-// 	for (var i = 0; i < data['problems_known'].length; i++) {					
-// 		html_string += "<li>"+data['problems_known'][i]+"</li>";
-// 	}
+function updateRequest(data) {
+	// var html_string = "<p> You know:</p>" +
+	// 					"<ul class=\"known\">";
+	// for (var i = 0; i < data['problems_known'].length; i++) {					
+	// 	html_string += "<li>"+data['problems_known'][i]+"</li>";
+	// }
 
-// 	html_string += "</ul>" +
-// 		"<p> You need help on:</p>" +
-// 		"<ul class=\"unknown\">";
+	// html_string += "</ul>" +
+	// 	"<p> You need help on:</p>" +
+	// 	"<ul class=\"unknown\">";
 
-// 	for (var j = 0; j < data['problems_unknown'].length; j++) {
-// 		html_string += "<li>"+ data['problems_unknown'][j]+"</li>";
-// 	}
-// 	html_string +=" <div class=\"clickable edit\">" +
-// 		"<p>EDIT</p></div>" +
-// 		"<div class=\"clickable delete\">" +
-// 		"<p>DELETE</p></div>";
-// 	var curr_id = data['id'];
-// 	$(".match_inf#"+curr_id+"").html(html_string);
-// 	initClick();
-// }
+	// for (var j = 0; j < data['problems_unknown'].length; j++) {
+	// 	html_string += "<li>"+ data['problems_unknown'][j]+"</li>";
+	// }
+	// html_string +=" <div class=\"clickable edit\">" +
+	// 	"<p>EDIT</p></div>" +
+	// 	"<div class=\"clickable delete\">" +
+	// 	"<p>DELETE</p></div>";
+	// var curr_id = data['id'];
+	// $(".match_inf#"+curr_id+"").html(html_string);
+	// initClick();
+	window.location.href = "matches";
+}
 
 

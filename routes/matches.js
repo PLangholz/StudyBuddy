@@ -142,11 +142,10 @@ exports.update_request = function(req, res) {
 	var match_request = getMatchRequestFromId(req.body.assign_id);
 	match_request['problems_known'] = req.body.known;
 	match_request['problems_unknown'] = req.body.unknown;
-	// res.json(match_request);
-  console.log("HELLO THIS IS NOT WORKING");
-  res.redirect("/search");
+  var status_messages = [{"text": "Match request updated.", "class": "success-message", "glyphicon": "glyphicon-ok"}];
+  req.session.status_messages = status_messages;
+  res.json(match_request);
   return;
-
 };
 
 
@@ -160,7 +159,7 @@ exports.delete_match_request = function(req, res) {
     req.session.status_messages = status_messages;
 
     // redirect to matches page
-    res.redirect("/search");
+    res.redirect("/matches");
     return; 
 }
 
