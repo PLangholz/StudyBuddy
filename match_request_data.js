@@ -153,6 +153,7 @@ var course_data = require('./course_data.js');
  	new_match_request_obj['id'] = match_request_id;
  	var return_var = false;
  	var poss_match = exports.possible_match(new_match_request_obj);
+ 	
  	if (poss_match != undefined) {
  		return_var = true;
  		poss_match['pending'] = false;
