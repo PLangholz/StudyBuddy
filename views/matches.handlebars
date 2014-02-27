@@ -121,7 +121,7 @@
             					<div id="collapse{{id}}m" class="accordion-body collapse">
                         			<div class="details-left col-md-12 match_inf" id="{{id}}m">	
                         				<p>{{other_user.first_name}}'s Email: <a href="mailto:{{other_user.email}}">{{other_user.email}}</a></p>
-        								<p>{{other_user.first_name}}'s Phone Number: <a href="tel:{{other_user.phone_number}}">{{other_user.phone_number}}</a></p>		                          
+        								<p>{{other_user.first_name}}'s Phone Number: <a href="sms:{{other_user.phone_number}}">{{other_user.phone_number}}</a></p>		                          
                         			</div>
 
                                     <form action="/delete-match" method="post" role="form">
