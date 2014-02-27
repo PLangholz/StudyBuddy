@@ -168,7 +168,7 @@ exports.delete_match = function(req, res) {
     match_data.delete_match(match_id, req.session.curr_user_id);
 
     // Add a status message about what happened
-    var status_messages = [{"text": "Pending match request deleted.", "class": "success-message", "glyphicon": "glyphicon-ok"}];
+    var status_messages = [{"text": "Match deleted! We are looking for new matches, check back periodically.    <span class=\"glyphicon glyphicon-remove\"></span> ", "class": "success-message", "glyphicon": "glyphicon-ok"}];
     req.session.status_messages = status_messages;
 
     // redirect to matches page
