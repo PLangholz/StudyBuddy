@@ -31,6 +31,15 @@
 
         {{> status_messages }}
 
+        {{#if new_user }}
+            {{#if new_user_call_to_action }}
+                <h2>Hey, welcome!<br /> Let's studybuddy!</h2>
+                <a href="/search"><button id="update-prof" type="button" class="btn btn-lg"><i class="fa fa-search fa-med" alt="Search"></i>&nbsp;Find a Match Now</button></a>
+                <br />
+                <br />
+            {{/if}}
+        {{/if}}
+
         <div class="row">
             <div class="col-xs-6 action-thumbnail">
                 <a href="/search" class="thumbnail">  
@@ -74,7 +83,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                             <a href="/update-profile">
-                                    <button id="update-prof" type="button" class="btn btn-med"><i class="fa fa-pencil fa-med nav-icon" alt="Update Profile"></i>&nbsp;Edit</button>
+                                    <button id="update-prof" type="button" class="btn btn-sm"><i class="fa fa-pencil fa-med nav-icon" alt="Update Profile"></i>&nbsp;Edit</button>
                                 </a>
                         </div>
                         </div>
