@@ -38,10 +38,10 @@
             <div id="{{this}}" class="result-problems row unselected">
                 <div class="col-xs-12">
                     <div class="problem-option">
-                        <i class="fa fa-plus fa-lg nav-icon problem-status-complete" alt="Problem Completed"></i>
+                        <i id="problem-{{this}}" class="fa fa-plus fa-lg nav-icon problem-status-complete" alt="Problem Completed"></i>
                         <h2 class="problem-name">Problem {{this}}</h2>
                         <input style="opacity: 0; position: absolute;" 
-                        checked="checked" type="checkbox" name="checkbox-{{this}}"></input>
+                        checked="checked" type="checkbox" value="unchecked" name="checkbox-{{this}}"></input>
                     </div>
                 </div>
             </div>
@@ -70,28 +70,35 @@
     <!--<script src="/js/jquery.mobile-1.4.1.js"></script>-->
 
     <script>
-        $(document).ready(function() {   
-            console.log("ready");        
+        $(document).ready(function() {       
             $('.result-problems').click(function(e) {
-                $(this).toggleClass('unselected', 'selected');
-                var inputProblem = $("input[name='checkbox-"+this.id+"']");
-                if (inputProblem.prop('checked')) {
-                    inputProblem.prop('checked', false);
-                    $(this).find('i').toggleClass('problem-status-incomplete');
-                    $(this).find('i').removeClass('fa-plus');
-                    $(this).find('i').addClass('fa-check-circle-o');
+                var inputProblem = $("input[name='checkbox-"+this.id+"']"); 
+                console.log("ALREADY CHECKED? "+inputProblem.prop('checked'));
+                if ($(this).hasClass('unselected')) {
+                    console.log("PROBLEM "+this.id+" IS BEING ADDED!");
+                    $(this).removeClass('unselected');
+                    $("i#problem-"+this.id).removeClass('problem-status-complete');
+                    $("i#problem-"+this.id).addClass('problem-status-incomplete');
+                    $(this).addClass('selected');
+                    inputProblem.attr("value","checked");
+                    $("i#problem-"+this.id).removeClass('fa-plus');
+                    $("i#problem-"+this.id).addClass('fa-check-circle-o');
 
-                    console.log($(this).find('i'));
+
 
                 }
                 else {
-                    inputProblem.prop('checked', true);
-                    $(this).find('i').toggleClass('problem-status-incomplete');
-                    $(this).find('i').removeClass('fa-check-circle-o');
-                    $(this).find('i').addClass('fa-plus');
-                    console.log($(this).children('i'));
+                    console.log("PROBLEM "+this.id+" IS BEING SUBTRACTED!");
+                    $(this).removeClass('selected');
+                    $("i#problem-"+this.id).removeClass('problem-status-incomplete');
+                    $("i#problem-"+this.id).addClass('problem-status-complete');
+                    $(this).addClass('unselected');
+                    inputProblem.attr("value", "unchecked");
+                    $("i#problem-"+this.id).removeClass('fa-check-circle-o');
+                    $("i#problem-"+this.id).addClass('fa-plus');
                 }
-            });
+            }
+                );
         });
 
 

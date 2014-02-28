@@ -118,7 +118,7 @@ div.unselected {
 }
 
 div.selected {
-    background-color: green;
+    background-color: #2a6496;
 /*    -webkit-transition-timing-function: ease-in-out;
     transition-timing-function: ease-in-out;*/
 }
@@ -302,4 +302,18 @@ i.arrow {
     color: white;
     margin-bottom: 5px;
     height: 40px;
+}
+
+.match_inf {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.match_inf p {
+    font-size: 20px;
+}
+
+.deletebtn {
+    width: 100%;
+    background-color: 
 }

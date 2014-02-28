@@ -113,14 +113,16 @@ exports.view = function(req, res){
 // };
 
 exports.create_match_request = function(req, res) {
+  console.log("CREATING MATCH REQUEST");
 	var assign_id = req.body['assignment_id'];
 	var assign_obj = course_data.get_assignment_by_id(assign_id);
 	var known = new Array();
 	var unknown = new Array();
 	var numProblems = assign_obj.problems.length;
-	console.log(req.body);
+	console.log("BODY: "+JSON.stringify(req.body));
 	for (var i = 1; i <= numProblems; i++) {
-		if(req.body['checkbox-'+i]) unknown.push(i);
+    console.log("PROBLEM "+i+" "+req.body['checkbox-'+i]);
+		if(req.body['checkbox-'+i] == "checked") unknown.push(i);
 		else known.push(i);
 	}
 	var user_id = req.session.curr_user_id;	
@@ -133,9 +135,9 @@ exports.create_match_request = function(req, res) {
   
   }
   
-
+  console.log("CREATED MATCH REQUEST - NOW REDIRECTING");
 	res.redirect("/matches");
-	return
+	return;
 };
 
 exports.update_request = function(req, res) {
