@@ -3,7 +3,7 @@
 <html>
 <head>
     <!-- Google Analytics Content Experiment code -->
-<script>function utmx_section(){}function utmx(){}(function(){var
+<!--script>function utmx_section(){}function utmx(){}(function(){var
 k='82818266-1',d=document,l=d.location,c=d.cookie;
 if(l.search.indexOf('utm_expid='+k)>0)return;
 function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
@@ -14,7 +14,7 @@ length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
 '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
 valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
-</script><script>utmx('url','A/B');</script>
+</script><script>utmx('url','A/B');</script-->
 <!-- End of Google Analytics Content Experiment code -->
 
 	<title>StuddyBuddy</title>	
@@ -144,7 +144,7 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 
             // Catch users before they go to the next page
             $("a").click(function(e) {
-                e.preventDefault();
+                //e.preventDefault();
                 var endTime = new Date().getTime();
                 var timeSpent = endTime - startTime;
                 console.log("to GA: time spent - " + timeSpent);
