@@ -2,6 +2,21 @@
 
 <html>
 <head>
+    <!-- Google Analytics Content Experiment code -->
+<script>function utmx_section(){}function utmx(){}(function(){var
+k='82818266-1',d=document,l=d.location,c=d.cookie;
+if(l.search.indexOf('utm_expid='+k)>0)return;
+function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+'<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+'://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+</script><script>utmx('url','A/B');</script>
+<!-- End of Google Analytics Content Experiment code -->
+
 	<title>StuddyBuddy</title>	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -88,7 +103,7 @@
                             <div class="col-xs-12">
                             <a href="/update-profile">
                                     <button id="update-prof" type="button" class="btn btn-sm"><i class="fa fa-pencil fa-med nav-icon" alt="Update Profile"></i>&nbsp;Edit</button>
-                                </a>
+                            </a>
                         </div>
                         </div>
                     </div>
@@ -110,11 +125,35 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      //ga('create', 'UA-48453653-2', 'studdybuddy.herokuapp.com');
-      ga('create', 'UA-48453653-2', {'cookieDomain': 'none'});
+      ga('create', 'UA-48453653-2', 'studdybuddy.herokuapp.com');
+      //ga('create', 'UA-48453653-2', {'cookieDomain': 'none'});
       ga('send', 'pageview');
 
     </script>
+
+    <!-- Google analytics experiment action tracking -->
+    <script>
+
+        $(document).ready(function() {
+            initializeTracking();
+        });
+
+        function initializeTracking() {
+            console.log("init tracking");
+            var startTime = new Date().getTime();
+
+            // Catch users before they go to the next page
+            $("a").click(function(e) {
+                e.preventDefault();
+                var endTime = new Date().getTime();
+                var timeSpent = endTime - startTime;
+                console.log("to GA: time spent - " + timeSpent);
+                _gaq.push(['_trackTiming', 'Homepage', 'HomepageTime', timeSpent]);
+            });
+        }
+
+    </script>
+
 
 </body>
 </html>
