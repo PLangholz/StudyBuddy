@@ -55,7 +55,8 @@ exports.view = function(req, res, curr_user){
   		'curr_user': curr_user,
       'status_messages': status_messages,
       'username': req.session.username,
-      'new_user': new_user
+      'new_user': new_user, 
+      'new_user_call_to_action': false
   	});
 
 };
