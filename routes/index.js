@@ -78,6 +78,10 @@ exports.viewNewUserAlternate = function(req, res, curr_user){
   var new_user_call_to_action = true;
 
   var curr_user = user_data.get_user_by_id(req.session.curr_user_id)
+  // have to add this because of disabled login restriction
+  if (curr_user == undefined) {
+    curr_user = user_data.get_new_user()
+  }
   req.session.username = curr_user.first_name;
   
   // grab status message if there is one and flush
