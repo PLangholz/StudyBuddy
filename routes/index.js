@@ -9,10 +9,11 @@ var user_data = require('../user_data');
 var match_data = require('../match_data.js');
 
 exports.view = function(req, res, curr_user){
-  if (req.session.curr_user_id == undefined) {
-  	res.redirect("/login");
-  	return;
-  }
+  // Disabling "have to be logged in" for now, as it's messing with GA
+  //if (req.session.curr_user_id == undefined) {
+  //	res.redirect("/login");
+  //	return;
+  //}
 
   var new_user = false;
   if (req.session.new_user != undefined && req.session.new_user) {
@@ -67,10 +68,11 @@ exports.view = function(req, res, curr_user){
  * in the form of a "search for matches now" button
  */
 exports.viewNewUserAlternate = function(req, res, curr_user){
-  if (req.session.curr_user_id == undefined) {
-    res.redirect("/login");
-    return;
-  }
+  // Disabling "have to be logged in" for now, as it's messing with GA
+  //if (req.session.curr_user_id == undefined) {
+  //  res.redirect("/login");
+  //  return;
+  //}
 
   var new_user = true;
   var new_user_call_to_action = true;
