@@ -43,6 +43,8 @@ a.thumbnail {
     box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow;
+    border: none;
+    background-color: whitesmoke;
 }
 
 .action-thumbnail {
@@ -62,7 +64,7 @@ a.thumbnail {
 }
 
 div#prof-photo {
-    margin-top: 3px;
+    margin-top: -7px;
 }
 
 a {
@@ -307,16 +309,39 @@ i.arrow {
 .match_inf {
     margin-top: 10px;
     text-align: center;
-}
-
-.match_inf p {
     font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .deletebtn {
     width: 100%;
     background-color: 
+    margin-bottom: 20px;
 }
 .call-to-action {
     background-color: #70DB70;
+}
+
+.contact-info {
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 0;
+}
+
+.contact-info a {
+    width: 31%;
+    color: white;
+    height: 35px;
+}
+
+.contact-info .text {
+    background-color: #2a6496;
+}
+
+.contact-info .call {
+    background-color: green;
+}
+
+.contact-info .email {
+    background-color: #8C1515;
 }

@@ -13,12 +13,6 @@
         <link href="/css/studybuddy.css" rel="stylesheet">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
     </head>
 
     <body>
@@ -85,7 +79,7 @@
                     </h4>
                 </a>
                 <div id="collapse{{id}}" class="accordion-body collapse">
-                        <div class="details-left col-md-12">
+                        <div name="collapse{{id}}" class="details-left col-md-12">
                             {{#each assignments}}
                             <a href="/assignment/?id={{assignment_id}}"><p><b>{{title}}</b></p></a>
                             {{/each}}
@@ -112,6 +106,13 @@
     <script src="/js/studybuddy.js"></script>
 
     <script>
+    $('.accordion-toggle').click(function() {
+        var startIndex = this.href.match("collapse").index + 8;
+        var collapseId = this.href.substring(startIndex);
+        console.log(details);
+        $(document).scrollTop('#'+details);
+    });
+
     $('.accordion').click(function(e) {
         if ($(this).find('i').hasClass('fa-chevron-down')) {
             $(this).find('i').removeClass('fa-chevron-down');
