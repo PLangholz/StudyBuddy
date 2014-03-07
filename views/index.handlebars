@@ -32,28 +32,26 @@
         {{> status_messages }}
 
         {{#if new_user }}
-            {{#if new_user_call_to_action }}
             <div class="row">
                 <div class="col-xs-12 call-to-action img-rounded">
                     <h2>Hey, welcome!<br /> Let's studybuddy!</h2>
-                    <a href="/search"><button id="update-prof" type="button" class="btn btn-lg"><i class="fa fa-search fa-med" alt="Search"></i>&nbsp;Find a Match Now</button></a>
+                    <a id="new-user-match-link" href="/search"><button type="button" class="btn btn-lg"><i class="fa fa-search fa-med" alt="Search"></i>&nbsp;Find a Match Now</button></a>
                     <br />
                     <br />
                 </div>
             </div>
-            {{/if}}
         {{/if}}
 
         <div class="row">
             <div class="col-xs-6 action-thumbnail">
-                <a href="/search" class="thumbnail">  
+                <a id="search-icon-link" href="/search" class="thumbnail">  
                     <i class="fa fa-search fa-7x main-nav-icon" alt="Search"></i>
                     <br/>
                     <div class="description">Search</div>
                 </a>
-            </div>            
+            </div>     
             <div class="col-xs-6 action-thumbnail">
-                <a href="/matches" class="thumbnail"> 
+                <a id="matches-icon-link" href="/matches" class="thumbnail"> 
                     <i class="fa fa-users fa-7x main-nav-icon" alt="My Matches"></i>
                     <br/><div class="description">
                     My Matches</div>
@@ -86,9 +84,9 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                            <a href="/update-profile">
+                            <a href="/update-profile" id="update-profile-link">
                                     <button id="update-prof" type="button" class="btn btn-sm"><i class="fa fa-pencil fa-med nav-icon" alt="Update Profile"></i>&nbsp;Edit</button>
-                                </a>
+                            </a>
                         </div>
                         </div>
                     </div>
@@ -103,6 +101,61 @@
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
     <script src="/js/studybuddy.js"></script>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-48453653-2', 'studdybuddy.herokuapp.com');
+        //ga('create', 'UA-48453653-2', {'cookieDomain': 'none'});
+        ga('send', 'pageview');
+
+
+        $(document).ready(function() {
+            initializeTracking();
+        });
+
+        function initializeTracking() {
+
+            console.log("init tracking");
+            var startTime = new Date().getTime();
+
+            // Catch users before they go to the next page
+            // This is not registering on the GA dashboard for some reason...
+            /*
+            $("a").click(function(e) {
+                e.preventDefault();
+                var endTime = new Date().getTime();
+                var timeSpent = endTime - startTime;
+                var timeSpent = parseInt(timeSpent);
+                console.log("to GA: time spent - " + timeSpent);
+                console.log("New user flag: " + '{{new_user_call_to_action}}');
+                ga('send', 'timing', 'homepage', 'overallHompage', timeSpent, 'var{{new_user_call_to_action}}')
+            });
+            */
+
+            // log link clicks
+            var link_ids = ['update-profile-link', 'new-user-match-link', 'matches-icon-link', 'search-icon-link', 'logout-nav-icon', 'home-nav-icon'];
+            for (var i=0; i<link_ids.length; i++) {
+                $('#' + link_ids[i]).on('click', function() {
+                    ga('send', 'event', 'homepage-button-click', 'click', link_ids[i]);
+                });
+            }
+
+            // keep track of people going to "search"
+            $('#new-user-match-link').on('click', function() {
+                ga('send', 'event', 'homepage2search', 'click');
+            });
+            $('#search-icon-link').on('click', function() {
+                ga('send', 'event', 'homepage2search', 'click');
+            });
+
+        }
+
+    </script>
+
 
 </body>
 </html>

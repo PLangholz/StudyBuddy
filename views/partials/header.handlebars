@@ -6,7 +6,7 @@
             {{#if username}}
 
                     <div class="icon">
-                        <a class="nav-link" href="/"><i class="fa fa-home fa-lg nav-icon" alt="Home"></i></a>
+                        <a id="home-nav-icon" class="nav-link" href="/"><i class="fa fa-home fa-lg nav-icon" alt="Home"></i></a>
                     </div>
                 
             {{/if}}
@@ -17,7 +17,7 @@
         <div class="col-xs-4">
             {{#if username}}
                 <div class="logout"> <div id="logged-in-as">{{username}}</div>
-                    <a class="nav-link" href="/logout"><i class="fa fa-sign-out fa-lg nav-icon" alt="Logout"></i></a>
+                    <a id="logout-nav-icon" class="nav-link" href="/logout"><i class="fa fa-sign-out fa-lg nav-icon" alt="Logout"></i></a>
                 </div>
             {{/if}}
         </div>
