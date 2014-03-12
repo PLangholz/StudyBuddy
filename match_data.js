@@ -176,8 +176,9 @@ exports.annotate_with_other_user_data = function(matches, curr_user_id) {
  	console.log("peidng: " + second_match_request_id);
 	match_request_interface.set_match_request_to_pending(second_match_request_id);
  	// now we find this match object and delete it
- 	for (var i = match.id; i >= 0; i--) {
- 		if (data['matches'][i].id == match.id) {
+ 	var all_matches = data['matches'];
+ 	for (var i = 0; i < all_matches.length; i++) {
+ 		if (all_matches[i].id == match.id) {
  			data['matches'].splice(i, 1);
  			break;
  		}
