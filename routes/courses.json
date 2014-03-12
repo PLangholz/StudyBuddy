@@ -3,8 +3,8 @@
 		{
 			"id": 0,
 			"code" : "CS 103",
-			"full_name" : "CS 103: Mathematical Foundations of Computing",
-			"title": "Mathematical Foundations of Computing",
+			"full_name" : "CS 103: Mathematical Foundations",
+			"title": "Mathematical Foundations",
 			"description": "Core Class",
 			"popular": "true",
 			"assignments" :
