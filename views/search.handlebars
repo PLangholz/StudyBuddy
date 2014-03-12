@@ -107,10 +107,17 @@
 
     <script>
     $('.accordion-toggle').click(function() {
-        var startIndex = this.href.match("collapse").index + 8;
-        var collapseId = this.href.substring(startIndex);
-        console.log(details);
-        $(document).scrollTop('#'+details);
+        $("#click").click(function (){
+            $('html, body').animate({
+                scrollTop: $('.target').offset().top
+            }, 2000);
+    });
+        // scrollTop: $('.target').offset().top
+        // var startIndex = this.href.match("collapse").index + 8;
+        // console.log(startIndex);
+        // var collapseId = this.href.substring(startIndex);
+        // console.log($('#collapse'+collapseId));
+        // $(document).scrollTop($('#collapse'+collapseId));
     });
 
     $('.accordion').click(function(e) {

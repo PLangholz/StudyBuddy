@@ -97,6 +97,7 @@ button#search-button {
 
 div#results {
     text-align: center;
+    margin-bottom: 50px;
 }
 
 div.result {
@@ -167,6 +168,7 @@ button#update-prof {
     background-color: #2a6496;
     font-weight: 400;
     height: 40px;
+    margin-bottom: 20px;
 }
 
 div.description {
@@ -260,9 +262,13 @@ div.problem-option {
     margin-top: 3px;
 }
 
+.ui-menu {
+    width: 50%;
+}
+
 .ui-menu .ui-menu-item a {
     font-family: ProximaNova-Light;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 h4.results-header {
